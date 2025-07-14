@@ -9,8 +9,8 @@ export const translations: Record<string, Translations> = {
     },
     hero: {
       location: "Sri Lanka's Legal Platform",
-      title: 'A Smarter, Simpler Way to',
-      titleHighlight: 'Access Legal Help',
+      title: 'Empowering',
+      titleHighlight: 'Legal Minds',
       description: "Lawguide.lk is Sri Lanka's upcoming legal platform designed to help law students, legal professionals, and everyday citizens easily access legal resources and services.",
       joinWaitlist: 'Join the Waitlist',
       comingSoonNote: 'Coming Soon — Built With You in Mind'
@@ -134,8 +134,8 @@ export const translations: Record<string, Translations> = {
     },
     hero: {
       location: 'ශ්‍රී ලංකාවේ නීති වේදිකාව',
-      title: 'නීතිමය උපකාර ලබා ගැනීමට',
-      titleHighlight: 'වඩා හොඳ, සරල ක්‍රමයක්',
+      title: 'නීතිමය මනස්',
+      titleHighlight: 'සවිබල ගැන්වීම',
       description: 'Lawguide.lk යනු නීති ශිෂ්‍යයන්, නීති වෘත්තිකයන් සහ සාමාන්‍ය පුරවැසියන්ට නීති සම්පත් සහ සේවා පහසුවෙන් ප්‍රවේශ වීමට උපකාර කිරීම සඳහා නිර්මාණය කරන ලද ශ්‍රී ලංකාවේ ඉදිරියේදී එන නීති වේදිකාවකි.',
       joinWaitlist: 'පොරොත්තු ලැයිස්තුවට සම්බන්ධ වන්න',
       comingSoonNote: 'ඉදිරියේදී — ඔබ සමඟ ගොඩනගා ඇත'
@@ -259,8 +259,8 @@ export const translations: Record<string, Translations> = {
     },
     hero: {
       location: 'இலங்கையின் சட்ட தளம்',
-      title: 'சட்ட உதவியை அணுகுவதற்கு',
-      titleHighlight: 'ஒரு சிறந்த, எளிய வழி',
+      title: 'சட்ட மனங்களை',
+      titleHighlight: 'வலுப்படுத்துதல்',
       description: 'Lawguide.lk என்பது சட்ட மாணவர்கள், சட்ட நிபுணர்கள் மற்றும் சாதாரண குடிமக்கள் சட்ட வளங்கள் மற்றும் சேவைகளை எளிதாக அணுக உதவ வடிவமைக்கப்பட்ட இலங்கையின் வரவிருக்கும் சட்ட தளமாகும்.',
       joinWaitlist: 'காத்திருப்பு பட்டியலில் சேரவும்',
       comingSoonNote: 'விரைவில் — உங்களுடன் கட்டமைக்கப்பட்டது'
