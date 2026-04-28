@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Audience from './components/Audience';
+import Pricing from './components/Pricing';
 import Status from './components/Status';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
@@ -16,6 +17,7 @@ function App() {
         <Hero />
         <Features />
         <Audience />
+        <Pricing />
         <Status />
         <Newsletter />
         <Footer />
