@@ -29,36 +29,40 @@ export default function Pricing() {
   const p = t.pricing;
 
   return (
-    <section id="pricing" className="border-b-2 border-black">
+    <section id="pricing" className="bg-gray-50 border-b border-gray-200">
 
       {/* Header */}
-      <div className="px-8 lg:px-12 py-16 border-b-2 border-black">
+      <div className="px-8 lg:px-12 py-16 border-b border-gray-200 bg-white">
         <motion.div
-          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.5 }}
         >
-          <span className="font-mono text-xs uppercase tracking-widest border-2 border-black px-2.5 py-1 mb-6 inline-block">
+          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 border border-gray-300 bg-gray-50 px-2.5 py-1 rounded-sm mb-6 inline-block">
             {p.tag}
           </span>
-          <h2 className="font-black text-black uppercase text-4xl md:text-5xl leading-tight mb-4">
+          <h2 className="font-black text-gray-900 uppercase text-4xl md:text-5xl leading-tight mb-4">
             {p.title}<br />{p.titleLine2}
           </h2>
-          <p className="font-mono text-sm text-black/55 max-w-md mb-8">{p.body}</p>
+          <p className="font-mono text-sm text-gray-500 max-w-md mb-8">{p.body}</p>
 
-          {/* Billing toggle */}
-          <div className="inline-flex border-2 border-black">
+          {/* Billing toggle — matches app button style */}
+          <div className="inline-flex bg-gray-100 rounded-lg p-1 border border-gray-200">
             <button
               onClick={() => setAnnual(false)}
-              className={`font-mono text-xs uppercase tracking-widest px-5 py-2.5 transition-colors ${!annual ? 'bg-black text-white' : 'text-black hover:bg-black/5'}`}
+              className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-md transition-colors ${
+                !annual ? 'bg-white text-gray-900 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-700'
+              }`}
             >
               {p.monthly}
             </button>
             <button
               onClick={() => setAnnual(true)}
-              className={`font-mono text-xs uppercase tracking-widest px-5 py-2.5 flex items-center gap-2 transition-colors ${annual ? 'bg-black text-white' : 'text-black hover:bg-black/5'}`}
+              className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-md flex items-center gap-2 transition-colors ${
+                annual ? 'bg-white text-gray-900 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-700'
+              }`}
             >
               {p.annual}
-              <span className="bg-[#22c55e] text-black text-[10px] font-black px-1.5 py-0.5 tracking-wide">
+              <span className="bg-blue-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded tracking-wide">
                 {p.annualBadge}
               </span>
             </button>
@@ -66,8 +70,8 @@ export default function Pricing() {
         </motion.div>
       </div>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+      {/* Cards grid — matches app's card style */}
+      <div className="p-6 lg:p-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {PLAN_IDS.map((id, i) => {
           const plan = p.plans[id];
           const prices = PRICES[id];
@@ -78,56 +82,65 @@ export default function Pricing() {
           return (
             <motion.div
               key={id}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
-              className={`flex flex-col border-black ${i < PLAN_IDS.length - 1 ? 'border-r-2' : ''} ${isAccent ? 'bg-black text-white' : 'bg-white text-black'}`}
+              className={`flex flex-col bg-white rounded-xl border shadow-sm overflow-hidden ${
+                isPopular
+                  ? 'border-blue-500 ring-2 ring-blue-500 ring-offset-1'
+                  : isAccent
+                  ? 'border-gray-800 bg-gray-900'
+                  : 'border-gray-200'
+              }`}
             >
+              {/* Popular ribbon */}
+              {isPopular && (
+                <div className="bg-blue-600 text-white text-center font-black text-[10px] uppercase tracking-widest py-1.5">
+                  ★ {p.popular}
+                </div>
+              )}
+
               {/* Header */}
-              <div className={`px-6 pt-8 pb-6 border-b-2 ${isAccent ? 'border-white/15' : 'border-black'}`}>
-                {isPopular && (
-                  <div className={`font-black text-[10px] uppercase tracking-widest mb-2 ${isAccent ? 'text-[#22c55e]' : 'text-[#22c55e]'}`}>
-                    ★ {p.popular}
-                  </div>
-                )}
-                <div className={`font-black uppercase text-base tracking-wide mb-1 ${isAccent ? 'text-white' : 'text-black'}`}>
+              <div className={`px-5 pt-6 pb-5 border-b ${isAccent ? 'border-gray-700' : 'border-gray-100'}`}>
+                <div className={`font-black uppercase text-sm tracking-wide mb-1 ${isAccent ? 'text-white' : 'text-gray-900'}`}>
                   {plan.name}
                 </div>
-                <p className={`font-mono text-xs mb-5 ${isAccent ? 'text-white/50' : 'text-black/45'}`}>
+                <p className={`font-mono text-xs mb-4 ${isAccent ? 'text-gray-400' : 'text-gray-500'}`}>
                   {plan.description}
                 </p>
 
-                {/* Price */}
                 {price === 0 ? (
-                  <div className="font-black text-4xl leading-none mb-1">Free</div>
+                  <div className={`font-black text-3xl leading-none mb-1 ${isAccent ? 'text-white' : 'text-gray-900'}`}>Free</div>
                 ) : (
                   <div className="mb-1">
                     <div className="flex items-end gap-1">
-                      <span className={`font-mono text-xs self-start mt-1.5 ${isAccent ? 'text-white/50' : 'text-black/40'}`}>LKR</span>
-                      <span className="font-black text-4xl leading-none">{price.toLocaleString()}</span>
-                      <span className={`font-mono text-xs mb-0.5 ${isAccent ? 'text-white/50' : 'text-black/40'}`}>/mo</span>
+                      <span className={`font-mono text-xs self-start mt-1 ${isAccent ? 'text-gray-400' : 'text-gray-400'}`}>LKR</span>
+                      <span className={`font-black text-3xl leading-none ${isAccent ? 'text-white' : 'text-gray-900'}`}>{price.toLocaleString()}</span>
+                      <span className={`font-mono text-xs mb-0.5 ${isAccent ? 'text-gray-400' : 'text-gray-400'}`}>/mo</span>
                     </div>
                     {annual && prices.annualTotal > 0 && (
-                      <div className={`font-mono text-[10px] mt-1 ${isAccent ? 'text-white/35' : 'text-black/35'}`}>
+                      <div className={`font-mono text-[10px] mt-1 ${isAccent ? 'text-gray-500' : 'text-gray-400'}`}>
                         LKR {prices.annualTotal.toLocaleString()} / year
                       </div>
                     )}
                   </div>
                 )}
 
-                <div className={`font-mono text-xs mt-3 ${isAccent ? 'text-[#22c55e]' : 'text-black/50'}`}>
+                <div className={`font-mono text-[11px] mt-2 ${isAccent ? 'text-blue-400' : 'text-blue-600'}`}>
                   {plan.queries}
                 </div>
               </div>
 
               {/* Features + CTA */}
-              <div className="flex-1 px-6 py-6 flex flex-col">
-                <ul className="flex flex-col gap-2.5 flex-1 mb-8">
+              <div className="flex-1 px-5 py-5 flex flex-col">
+                <ul className="flex flex-col gap-2 flex-1 mb-6">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
-                      <span className="text-[#22c55e] font-black text-xs mt-0.5 flex-shrink-0">+</span>
-                      <span className={`font-mono text-xs leading-snug ${isAccent ? 'text-white/70' : 'text-black/65'}`}>{f}</span>
+                      <svg className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${isAccent ? 'text-blue-400' : 'text-blue-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className={`font-mono text-xs leading-snug ${isAccent ? 'text-gray-300' : 'text-gray-600'}`}>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -136,18 +149,19 @@ export default function Pricing() {
                   href={HREFS[id]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block w-full text-center font-black uppercase text-xs tracking-widest py-3.5 border-2 transition-colors duration-150 ${
+                  className={`block w-full text-center font-black uppercase text-xs tracking-widest py-3 rounded-sm transition-colors duration-150 ${
                     isAccent
-                      ? 'border-[#22c55e] text-[#22c55e] hover:bg-[#22c55e] hover:text-black'
-                      : 'border-black text-black hover:bg-black hover:text-white'
+                      ? 'bg-blue-600 text-white hover:bg-blue-500'
+                      : isPopular
+                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'
+                      : 'bg-gray-900 text-white hover:bg-gray-700'
                   }`}
-                  style={{ boxShadow: isAccent ? '4px 4px 0 0 #22c55e' : '4px 4px 0 0 #000' }}
                 >
                   {plan.cta}
                 </a>
 
                 {id === 'free' && (
-                  <p className={`font-mono text-[10px] text-center mt-3 uppercase tracking-wider ${isAccent ? 'text-white/30' : 'text-black/35'}`}>
+                  <p className="font-mono text-[10px] text-center mt-3 uppercase tracking-wider text-gray-400">
                     {p.noCard}
                   </p>
                 )}
@@ -158,8 +172,8 @@ export default function Pricing() {
       </div>
 
       {/* Footer note */}
-      <div className="px-8 py-5 border-t-2 border-black">
-        <p className="font-mono text-xs text-black/40">{p.footerNote}</p>
+      <div className="px-8 pb-8">
+        <p className="font-mono text-xs text-gray-400">{p.footerNote}</p>
       </div>
     </section>
   );

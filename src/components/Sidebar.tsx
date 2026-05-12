@@ -10,8 +10,7 @@ const LANGUAGES: { code: Language; label: string }[] = [
 ];
 
 const scrollTo = (href: string) => {
-  const id = href.replace('#', '');
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById(href.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
 };
 
 export default function Sidebar() {
@@ -31,26 +30,34 @@ export default function Sidebar() {
   return (
     <>
       {/* ── Desktop sidebar ── */}
-      <aside className="hidden md:flex fixed top-0 left-0 h-screen w-60 bg-black flex-col z-50 border-r-2 border-black">
+      <aside className="hidden md:flex fixed top-0 left-0 h-screen w-60 bg-white flex-col z-50 border-r border-gray-200 shadow-sm">
         {/* Logo */}
-        <div className="p-6 border-b-2 border-white/10">
-          <a href="/" className="block">
-            <div className="text-white font-black text-xl uppercase tracking-tight leading-none">Lawguide</div>
-            <div className="text-[#22c55e] font-mono text-xs mt-0.5 tracking-widest">.lk</div>
+        <div className="p-6 border-b border-gray-100">
+          <a href="/" className="flex items-center gap-2.5">
+            {/* Scale icon matching the app */}
+            <div className="w-8 h-8 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0">
+              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3v18M3 8l9-5 9 5M5 11l-2 7h4l-2-7zM19 11l-2 7h4l-2-7zM3 18h18" />
+              </svg>
+            </div>
+            <div>
+              <div className="text-gray-900 font-black text-base uppercase tracking-tight leading-none">Lawguide</div>
+              <div className="text-blue-600 font-mono text-[10px] tracking-widest">.lk</div>
+            </div>
           </a>
           <div className="mt-4 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-400" />
-            <span className="text-amber-400 font-mono text-xs uppercase tracking-widest">{t.nav.stillBuilding}</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <span className="text-amber-600 font-mono text-[10px] uppercase tracking-widest">{t.nav.stillBuilding}</span>
           </div>
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 p-6 flex flex-col gap-0.5">
+        <nav className="flex-1 p-4 flex flex-col gap-0.5">
           {navLinks.map((item) => (
             <button
               key={item.href}
               onClick={() => handleNav(item.href)}
-              className="text-left text-white/60 hover:text-white font-mono text-xs uppercase tracking-widest py-2.5 border-b border-white/10 hover:border-[#22c55e] transition-colors duration-150"
+              className="text-left text-gray-500 hover:text-gray-900 hover:bg-gray-50 font-mono text-xs uppercase tracking-widest px-3 py-2.5 rounded-sm transition-colors duration-150"
             >
               {item.label}
             </button>
@@ -59,24 +66,23 @@ export default function Sidebar() {
             href="https://app.lawguide.lk"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 block border-2 border-[#22c55e] text-[#22c55e] text-center font-black text-xs uppercase tracking-widest py-3 hover:bg-[#22c55e] hover:text-black transition-colors duration-150"
-            style={{ boxShadow: '4px 4px 0 0 #22c55e' }}
+            className="mt-4 block bg-blue-600 text-white text-center font-black text-xs uppercase tracking-widest py-3 rounded-sm hover:bg-blue-700 transition-colors duration-150 shadow-sm"
           >
             {t.nav.tryFree}
           </a>
         </nav>
 
         {/* Language switcher */}
-        <div className="p-6 border-t-2 border-white/10">
-          <div className="flex gap-1.5">
+        <div className="p-4 border-t border-gray-100">
+          <div className="flex gap-1">
             {LANGUAGES.map((l) => (
               <button
                 key={l.code}
                 onClick={() => setLanguage(l.code)}
-                className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 border transition-colors duration-150 ${
+                className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 rounded-sm border transition-colors duration-150 ${
                   language === l.code
-                    ? 'bg-[#22c55e] text-black border-[#22c55e]'
-                    : 'text-white/40 border-white/20 hover:text-white hover:border-white/40'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'text-gray-400 border-gray-200 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
                 {l.label}
@@ -87,13 +93,18 @@ export default function Sidebar() {
       </aside>
 
       {/* ── Mobile top bar ── */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-4 h-14">
-        <a href="/" className="font-black text-black uppercase tracking-tight text-lg leading-none">
-          Lawguide<span className="text-[#22c55e]">.lk</span>
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 flex items-center justify-between px-4 h-14 shadow-sm">
+        <a href="/" className="flex items-center gap-2">
+          <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v18M3 8l9-5 9 5M5 11l-2 7h4l-2-7zM19 11l-2 7h4l-2-7zM3 18h18" />
+            </svg>
+          </div>
+          <span className="font-black text-gray-900 uppercase tracking-tight text-base">Lawguide<span className="text-blue-600">.lk</span></span>
         </a>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="font-mono text-xs uppercase tracking-widest border-2 border-black px-3 py-1.5 hover:bg-black hover:text-white transition-colors"
+          className="font-mono text-xs uppercase tracking-widest border border-gray-300 px-3 py-1.5 rounded-sm hover:bg-gray-50 text-gray-600 transition-colors"
         >
           {mobileOpen ? t.nav.close : t.nav.menu}
         </button>
@@ -106,14 +117,14 @@ export default function Sidebar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
-            className="md:hidden fixed top-14 left-0 right-0 z-40 bg-black border-b-2 border-black px-5 py-6 flex flex-col gap-4"
+            transition={{ duration: 0.15 }}
+            className="md:hidden fixed top-14 left-0 right-0 z-40 bg-white border-b border-gray-200 shadow-md px-4 py-5 flex flex-col gap-3"
           >
             {navLinks.map((item) => (
               <button
                 key={item.href}
                 onClick={() => handleNav(item.href)}
-                className="text-left text-white font-mono uppercase tracking-widest text-sm border-b border-white/10 pb-3"
+                className="text-left text-gray-600 font-mono uppercase tracking-widest text-sm border-b border-gray-100 pb-3 hover:text-gray-900"
               >
                 {item.label}
               </button>
@@ -122,7 +133,7 @@ export default function Sidebar() {
               href="https://app.lawguide.lk"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-[#22c55e] text-[#22c55e] text-center font-black uppercase text-xs py-3 tracking-widest"
+              className="bg-blue-600 text-white text-center font-black uppercase text-xs py-3 rounded-sm tracking-widest hover:bg-blue-700"
             >
               {t.nav.tryFree}
             </a>
@@ -131,10 +142,10 @@ export default function Sidebar() {
                 <button
                   key={l.code}
                   onClick={() => { setLanguage(l.code); setMobileOpen(false); }}
-                  className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 border transition-colors ${
+                  className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 rounded-sm border transition-colors ${
                     language === l.code
-                      ? 'bg-[#22c55e] text-black border-[#22c55e]'
-                      : 'text-white/40 border-white/20'
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'text-gray-400 border-gray-200'
                   }`}
                 >
                   {l.label}
