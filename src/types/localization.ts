@@ -1,127 +1,90 @@
 export type Language = 'en' | 'si' | 'ta';
 
+export interface FeatureRowContent {
+  tag: string;
+  title: string;
+  body: string;
+}
+
+export interface StatContent {
+  value: string;
+  label: string;
+  sub: string;
+}
+
+export interface PlanContent {
+  name: string;
+  description: string;
+  queries: string;
+  features: string[];
+  cta: string;
+}
+
 export interface Translations {
-  header: {
-    title: string;
-    comingSoon: string;
-    language: string;
-  };
   hero: {
-    location: string;
-    title: string;
-    titleHighlight: string;
+    badge: string;
+    titleLine1: string;
+    titleLine2: string;
+    titleAccent: string;
     description: string;
-    joinWaitlist: string;
-    comingSoonNote: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    trustItems: string[];
+    stillBuilding: string;
   };
-  features: {
-    title: string;
-    subtitle: string;
-    items: {
-      library: {
-        title: string;
-        description: string;
-      };
-      consultations: {
-        title: string;
-        description: string;
-      };
-      resources: {
-        title: string;
-        description: string;
-      };
-      jobs: {
-        title: string;
-        description: string;
-      };
-      bookstore: {
-        title: string;
-        description: string;
-      };
-      documents: {
-        title: string;
-        description: string;
-      };
-      management: {
-        title: string;
-        description: string;
-      };
-      community: {
-        title: string;
-        description: string;
-      };
-    };
+  featureRows: {
+    f1: FeatureRowContent;
+    f2: FeatureRowContent;
+    f3: FeatureRowContent;
+    f4: FeatureRowContent;
+    f5: FeatureRowContent;
+    f6: FeatureRowContent;
   };
-  audience: {
+  stats: [StatContent, StatContent, StatContent, StatContent];
+  waitlist: {
     title: string;
-    subtitle: string;
-    items: {
-      students: {
-        title: string;
-        description: string;
-      };
-      professionals: {
-        title: string;
-        description: string;
-      };
-      corporates: {
-        title: string;
-        description: string;
-      };
-      individuals: {
-        title: string;
-        description: string;
-      };
-    };
-  };
-  status: {
-    title: string;
-    subtitle: string;
-    roadmapTitle: string;
-    mainLanguage: string;
-    localizationNote: string;
-    roadmapItems: {
-      library: {
-        title: string;
-        description: string;
-      };
-      consultations: {
-        title: string;
-        description: string;
-      };
-      resources: {
-        title: string;
-        description: string;
-      };
-      documents: {
-        title: string;
-        description: string;
-      };
-      jobs: {
-        title: string;
-        description: string;
-      };
-      community: {
-        title: string;
-        description: string;
-      };
-    };
-  };
-  newsletter: {
-    title: string;
-    subtitle: string;
+    body: string;
     placeholder: string;
-    joinWaitlist: string;
-    successTitle: string;
-    successMessage: string;
-    noSpam: string;
+    cta: string;
+    success: string;
+    note: string;
+  };
+  pricing: {
+    tag: string;
+    title: string;
+    titleLine2: string;
+    body: string;
+    monthly: string;
+    annual: string;
+    annualBadge: string;
+    footerNote: string;
+    noCard: string;
+    popular: string;
+    plans: {
+      free: PlanContent;
+      student: PlanContent;
+      professional: PlanContent;
+      firm: PlanContent;
+    };
   };
   footer: {
-    title: string;
-    madeIn: string;
+    tagline: string;
     description: string;
-    buildTogether: string;
     copyright: string;
-    language: string;
+    disclaimer: string;
+    platform: string;
+    links: { label: string; href: string }[];
+    info: string;
+    languages: string;
+    payments: string;
+    builtIn: string;
+  };
+  nav: {
+    features: string;
+    pricing: string;
+    tryFree: string;
+    menu: string;
+    close: string;
+    stillBuilding: string;
   };
 }

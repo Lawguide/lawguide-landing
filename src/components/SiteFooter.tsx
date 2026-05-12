@@ -1,74 +1,74 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
+
+const scrollTo = (href: string) => {
+  if (href.startsWith('#')) {
+    document.getElementById(href.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    window.open(href, '_blank', 'noopener,noreferrer');
+  }
+};
 
 export default function SiteFooter() {
+  const { t } = useLanguage();
+  const f = t.footer;
+
   return (
     <footer className="bg-black text-white">
       <div className="grid md:grid-cols-3 border-b-2 border-white/10">
+
         {/* Brand */}
-        <div className="px-8 py-12 border-b-2 md:border-b-0 md:border-r-2 border-white/10">
-          <div className="font-black text-2xl uppercase leading-none mb-1">Lawguide</div>
-          <div className="text-[#22c55e] font-mono text-sm mb-6">.lk</div>
-          <p className="font-mono text-xs text-white/40 leading-relaxed max-w-xs">
-            AI-powered legal research for Sri Lanka. Built for lawyers, law students, and everyone who needs to understand the law.
-          </p>
+        <div className="px-8 lg:px-12 py-12 border-b-2 md:border-b-0 md:border-r-2 border-white/10">
+          <div className="font-black text-2xl uppercase leading-none mb-0.5">Lawguide</div>
+          <div className="text-[#22c55e] font-mono text-sm mb-5">.lk</div>
+          <p className="font-mono text-xs text-white/35 leading-relaxed max-w-xs">{f.description}</p>
           <div className="mt-6 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-            <span className="font-mono text-xs text-white/50 uppercase tracking-widest">Live at www.lawguide.lk</span>
+            <span className="w-2 h-2 rounded-full bg-amber-400" />
+            <span className="font-mono text-xs text-amber-400/70 uppercase tracking-widest">Still Building</span>
           </div>
         </div>
 
-        {/* Links */}
+        {/* Platform links */}
         <div className="px-8 py-12 border-b-2 md:border-b-0 md:border-r-2 border-white/10">
-          <div className="font-black text-xs uppercase tracking-widest text-white/40 mb-6">Platform</div>
+          <div className="font-black text-[10px] uppercase tracking-widest text-white/30 mb-5">{f.platform}</div>
           <div className="flex flex-col gap-3">
-            {[
-              { label: 'Try Free', href: 'https://app.lawguide.lk/en/register' },
-              { label: 'Features', href: '#features' },
-              { label: 'Pricing', href: '#pricing' },
-              { label: 'App Login', href: 'https://app.lawguide.lk' },
-            ].map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                target={l.href.startsWith('http') ? '_blank' : undefined}
-                rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="font-mono text-xs text-white/60 hover:text-[#22c55e] transition-colors uppercase tracking-widest"
+            {f.links.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => scrollTo(link.href)}
+                className="text-left font-mono text-xs text-white/50 hover:text-[#22c55e] transition-colors uppercase tracking-widest"
               >
-                {l.label}
-              </a>
+                {link.label}
+              </button>
             ))}
           </div>
         </div>
 
-        {/* Contact / Legal */}
+        {/* Info */}
         <div className="px-8 py-12">
-          <div className="font-black text-xs uppercase tracking-widest text-white/40 mb-6">Info</div>
-          <div className="flex flex-col gap-3">
-            <div className="font-mono text-xs text-white/60">
-              <div className="text-white/30 uppercase tracking-widest mb-1">Languages</div>
-              English · සිංහල · தமிழ்
+          <div className="font-black text-[10px] uppercase tracking-widest text-white/30 mb-5">{f.info}</div>
+          <div className="flex flex-col gap-4">
+            <div>
+              <div className="font-mono text-[10px] text-white/25 uppercase tracking-widest mb-1">{f.info === 'Info' ? 'Languages' : f.languages}</div>
+              <div className="font-mono text-xs text-white/50">{f.languages}</div>
             </div>
-            <div className="font-mono text-xs text-white/60 mt-2">
-              <div className="text-white/30 uppercase tracking-widest mb-1">Payments</div>
-              PayHere.lk — LKR only
+            <div>
+              <div className="font-mono text-[10px] text-white/25 uppercase tracking-widest mb-1">Payments</div>
+              <div className="font-mono text-xs text-white/50">{f.payments}</div>
             </div>
-            <div className="font-mono text-xs text-white/60 mt-2">
-              <div className="text-white/30 uppercase tracking-widest mb-1">Built in</div>
-              Sri Lanka 🇱🇰
+            <div>
+              <div className="font-mono text-[10px] text-white/25 uppercase tracking-widest mb-1">Built in</div>
+              <div className="font-mono text-xs text-white/50">{f.builtIn}</div>
             </div>
           </div>
         </div>
+
       </div>
 
       {/* Bottom bar */}
-      <div className="px-8 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <p className="font-mono text-xs text-white/30">
-          © 2025 Lawguide.lk — All rights reserved.
-        </p>
-        <p className="font-mono text-[10px] text-white/20 uppercase tracking-widest">
-          Not a substitute for legal advice from a qualified attorney.
-        </p>
+      <div className="px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <p className="font-mono text-xs text-white/25">{f.copyright}</p>
+        <p className="font-mono text-[10px] text-white/20 uppercase tracking-wider">{f.disclaimer}</p>
       </div>
     </footer>
   );

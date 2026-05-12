@@ -3,24 +3,28 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Language } from '../types/localization';
 
-const NAV = [
-  { label: 'Features', href: '#features' },
-  { label: 'Pricing', href: '#pricing' },
-];
-
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: 'en', label: 'EN' },
   { code: 'si', label: 'SI' },
   { code: 'ta', label: 'TA' },
 ];
 
+const scrollTo = (href: string) => {
+  const id = href.replace('#', '');
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+};
+
 export default function Sidebar() {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const scrollTo = (href: string) => {
-    const id = href.replace('#', '');
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const navLinks = [
+    { label: t.nav.features, href: '#features' },
+    { label: t.nav.pricing, href: '#pricing' },
+  ];
+
+  const handleNav = (href: string) => {
+    scrollTo(href);
     setMobileOpen(false);
   };
 
@@ -29,28 +33,24 @@ export default function Sidebar() {
       {/* ── Desktop sidebar ── */}
       <aside className="hidden md:flex fixed top-0 left-0 h-screen w-60 bg-black flex-col z-50 border-r-2 border-black">
         {/* Logo */}
-        <div className="p-6 border-b-2 border-white/20">
+        <div className="p-6 border-b-2 border-white/10">
           <a href="/" className="block">
-            <div className="text-white font-black text-xl uppercase tracking-tight leading-none">
-              Lawguide
-            </div>
-            <div className="text-[#22c55e] font-mono text-xs mt-1 tracking-widest uppercase">
-              .lk
-            </div>
+            <div className="text-white font-black text-xl uppercase tracking-tight leading-none">Lawguide</div>
+            <div className="text-[#22c55e] font-mono text-xs mt-0.5 tracking-widest">.lk</div>
           </a>
-          <div className="mt-3 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-            <span className="text-white/60 font-mono text-xs uppercase tracking-widest">Live Now</span>
+          <div className="mt-4 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400" />
+            <span className="text-amber-400 font-mono text-xs uppercase tracking-widest">{t.nav.stillBuilding}</span>
           </div>
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 p-6 flex flex-col gap-1">
-          {NAV.map((item) => (
+        <nav className="flex-1 p-6 flex flex-col gap-0.5">
+          {navLinks.map((item) => (
             <button
               key={item.href}
-              onClick={() => scrollTo(item.href)}
-              className="text-left text-white/70 hover:text-white font-mono text-sm uppercase tracking-widest py-2 border-b border-white/10 hover:border-[#22c55e] transition-colors duration-150"
+              onClick={() => handleNav(item.href)}
+              className="text-left text-white/60 hover:text-white font-mono text-xs uppercase tracking-widest py-2.5 border-b border-white/10 hover:border-[#22c55e] transition-colors duration-150"
             >
               {item.label}
             </button>
@@ -59,16 +59,16 @@ export default function Sidebar() {
             href="https://app.lawguide.lk"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 block border-2 border-[#22c55e] text-[#22c55e] text-center font-black text-sm uppercase tracking-widest py-3 hover:bg-[#22c55e] hover:text-black transition-colors duration-150"
+            className="mt-6 block border-2 border-[#22c55e] text-[#22c55e] text-center font-black text-xs uppercase tracking-widest py-3 hover:bg-[#22c55e] hover:text-black transition-colors duration-150"
             style={{ boxShadow: '4px 4px 0 0 #22c55e' }}
           >
-            Try Free
+            {t.nav.tryFree}
           </a>
         </nav>
 
         {/* Language switcher */}
-        <div className="p-6 border-t-2 border-white/20">
-          <div className="flex gap-2">
+        <div className="p-6 border-t-2 border-white/10">
+          <div className="flex gap-1.5">
             {LANGUAGES.map((l) => (
               <button
                 key={l.code}
@@ -76,7 +76,7 @@ export default function Sidebar() {
                 className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 border transition-colors duration-150 ${
                   language === l.code
                     ? 'bg-[#22c55e] text-black border-[#22c55e]'
-                    : 'text-white/50 border-white/20 hover:text-white hover:border-white/50'
+                    : 'text-white/40 border-white/20 hover:text-white hover:border-white/40'
                 }`}
               >
                 {l.label}
@@ -88,14 +88,14 @@ export default function Sidebar() {
 
       {/* ── Mobile top bar ── */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-4 h-14">
-        <a href="/" className="font-black text-black uppercase tracking-tight text-lg">
+        <a href="/" className="font-black text-black uppercase tracking-tight text-lg leading-none">
           Lawguide<span className="text-[#22c55e]">.lk</span>
         </a>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="font-mono text-xs uppercase tracking-widest border-2 border-black px-3 py-1.5 hover:bg-black hover:text-white transition-colors"
         >
-          {mobileOpen ? 'Close' : 'Menu'}
+          {mobileOpen ? t.nav.close : t.nav.menu}
         </button>
       </div>
 
@@ -103,16 +103,16 @@ export default function Sidebar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden fixed top-14 left-0 right-0 z-40 bg-black border-b-2 border-black px-4 py-6 flex flex-col gap-4"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="md:hidden fixed top-14 left-0 right-0 z-40 bg-black border-b-2 border-black px-5 py-6 flex flex-col gap-4"
           >
-            {NAV.map((item) => (
+            {navLinks.map((item) => (
               <button
                 key={item.href}
-                onClick={() => scrollTo(item.href)}
+                onClick={() => handleNav(item.href)}
                 className="text-left text-white font-mono uppercase tracking-widest text-sm border-b border-white/10 pb-3"
               >
                 {item.label}
@@ -122,11 +122,11 @@ export default function Sidebar() {
               href="https://app.lawguide.lk"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-[#22c55e] text-[#22c55e] text-center font-black uppercase text-sm py-3 tracking-widest"
+              className="border-2 border-[#22c55e] text-[#22c55e] text-center font-black uppercase text-xs py-3 tracking-widest"
             >
-              Try Free
+              {t.nav.tryFree}
             </a>
-            <div className="flex gap-2 pt-2">
+            <div className="flex gap-1.5 pt-1">
               {LANGUAGES.map((l) => (
                 <button
                   key={l.code}
@@ -134,7 +134,7 @@ export default function Sidebar() {
                   className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 border transition-colors ${
                     language === l.code
                       ? 'bg-[#22c55e] text-black border-[#22c55e]'
-                      : 'text-white/50 border-white/20'
+                      : 'text-white/40 border-white/20'
                   }`}
                 >
                   {l.label}

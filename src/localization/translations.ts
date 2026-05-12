@@ -1,379 +1,389 @@
 import { Translations } from '../types/localization';
 
+const APP = 'https://app.lawguide.lk';
+
 export const translations: Record<string, Translations> = {
   en: {
-    header: {
-      title: 'Lawguide.lk',
-      comingSoon: 'Coming Soon',
-      language: 'English'
-    },
     hero: {
-      location: "Sri Lanka's Legal Platform",
-      title: 'Empowering',
-      titleHighlight: 'Legal Minds',
-      description: "Lawguide.lk is Sri Lanka's upcoming legal platform designed to help law students, legal professionals, and everyday citizens easily access legal resources and services.",
-      joinWaitlist: 'Join the Waitlist',
-      comingSoonNote: 'Coming Soon — Built With You in Mind'
+      badge: "Sri Lanka's Legal AI Platform",
+      titleLine1: 'AI Legal',
+      titleLine2: 'Research',
+      titleAccent: 'For Sri Lanka.',
+      description:
+        'RAG-powered answers over 1704 Acts, 26,000+ case law documents, and Supreme Court judgments — in English, Sinhala, and Tamil. Instant. Cited. Accurate.',
+      ctaPrimary: 'Start Free — 5 Queries/Day',
+      ctaSecondary: 'View Plans',
+      trustItems: ['No card required', '1704 Acts indexed', '26K+ case law docs'],
+      stillBuilding: 'Still Building',
     },
-    features: {
-      title: 'What We\'re Building',
-      subtitle: 'A comprehensive legal platform for the Sri Lankan legal ecosystem',
-      items: {
-        library: {
-          title: 'Legal Resources',
-          description: 'Access legal information and resources'
-        },
-        consultations: {
-          title: 'Expert Consultations',
-          description: 'Connect with legal professionals'
-        },
-        resources: {
-          title: 'Educational Content',
-          description: 'Learning materials and resources'
-        },
-        jobs: {
-          title: 'Career Opportunities',
-          description: 'Legal career and job opportunities'
-        },
-        bookstore: {
-          title: 'Legal Publications',
-          description: 'Books and legal publications'
-        },
-        documents: {
-          title: 'Document Services',
-          description: 'Legal document assistance'
-        },
-        management: {
-          title: 'Practice Tools',
-          description: 'Tools for legal professionals'
-        },
-        community: {
-          title: 'Community',
-          description: 'Connect with the legal community'
-        }
-      }
+    featureRows: {
+      f1: {
+        tag: 'RAG Search',
+        title: 'Ask Anything.\nGet Cited Answers.',
+        body: 'Our RAG pipeline searches 1704+ Acts and 26,000+ case law documents in real-time. Every answer includes the exact source — act number, section, judgment reference. No hallucinations, no guessing.',
+      },
+      f2: {
+        tag: 'Multilingual',
+        title: 'English.\nSinhala. Tamil.',
+        body: 'Ask in any language Sri Lanka speaks. Lawguide understands and responds in all three official languages with full legal accuracy. No translation loss, no compromise.',
+      },
+      f3: {
+        tag: 'Case Law',
+        title: '2100+ Judgments.\nAt Your Fingertips.',
+        body: 'Supreme Court and Court of Appeal judgments fully indexed and searchable. AI extracts the ratio decidendi, key principles, and directly cites which judgment supports your answer.',
+      },
+      f4: {
+        tag: 'Consultation',
+        title: 'Book Expert\nLegal Advice.',
+        body: "When AI isn't enough, book a verified Sri Lankan lawyer directly through the platform. Qualified professionals available island-wide — scheduled in minutes.",
+      },
+      f5: {
+        tag: 'Legal Library',
+        title: '1704 Acts.\nFully Searchable.',
+        body: 'Every Act of Sri Lankan Parliament indexed with full-text search. Browse by category, search by keyword, or let the AI surface the relevant legislation automatically.',
+      },
+      f6: {
+        tag: 'Career Hub',
+        title: 'Legal Jobs &\nOpportunities.',
+        body: 'A dedicated jobs portal for the Sri Lankan legal sector. Law firms, corporate legal teams, and NGOs post positions. Students and professionals find their next move.',
+      },
     },
-    audience: {
-      title: 'Who Is This For?',
-      subtitle: 'Designed for everyone in Sri Lanka\'s legal ecosystem',
-      items: {
-        students: {
-          title: 'Law Students',
-          description: 'Resources and support for legal education'
-        },
-        professionals: {
-          title: 'Legal Professionals',
-          description: 'Tools and opportunities for practitioners'
-        },
-        corporates: {
-          title: 'Organizations',
-          description: 'Legal solutions for businesses'
-        },
-        individuals: {
-          title: 'General Public',
-          description: 'Legal help and guidance for everyone'
-        }
-      }
+    stats: [
+      { value: '1704+', label: 'Acts & Regulations', sub: 'All Sri Lankan legislation indexed' },
+      { value: '26K+', label: 'Case Law Docs', sub: 'Supreme Court & Court of Appeal' },
+      { value: '3', label: 'Languages', sub: 'English · Sinhala · Tamil' },
+      { value: '<2s', label: 'Response Time', sub: 'Powered by Gemini 2.0 Flash' },
+    ],
+    waitlist: {
+      title: 'Get Early Access.',
+      body: "Lawguide is still being built. Join the waitlist and we'll notify you the moment we go live.",
+      placeholder: 'your@email.com',
+      cta: 'Join Waitlist',
+      success: "You're on the list. We'll be in touch soon.",
+      note: 'No spam. One email when we launch.',
     },
-    status: {
-      title: 'Coming Soon',
-      subtitle: "We're building something special for Sri Lanka's legal community.",
-      roadmapTitle: 'In Development',
-      mainLanguage: 'Main language: English',
-      localizationNote: 'Multi-language support coming soon',
-      roadmapItems: {
-        library: {
-          title: 'Platform Development',
-          description: 'Core platform features'
+    pricing: {
+      tag: 'Pricing',
+      title: 'Plans for Every',
+      titleLine2: 'Legal Need.',
+      body: 'Pay in LKR. Cancel anytime. All paid plans include a 7-day free trial. Payments via PayHere.lk.',
+      monthly: 'Monthly',
+      annual: 'Annual',
+      annualBadge: '2 months free',
+      footerNote: "All plans billed in LKR via PayHere.lk — Sri Lanka's leading payment gateway. 7-day free trial on all paid plans.",
+      noCard: 'No credit card required',
+      popular: 'Most Popular',
+      plans: {
+        free: {
+          name: 'Free',
+          description: 'Try Lawguide. No card needed.',
+          queries: '5 queries / day',
+          features: ['AI legal Q&A in English', 'Basic legal library access', 'Cited answers with sources', 'Email support'],
+          cta: 'Start Free',
         },
-        consultations: {
-          title: 'Service Integration',
-          description: 'Professional services'
+        student: {
+          name: 'Student',
+          description: 'For law students who need full access.',
+          queries: '15 queries / day',
+          features: ['Everything in Free', 'Sinhala & Tamil support', 'Chat history saved', 'Full legal library access', 'Priority email support'],
+          cta: 'Start Student',
         },
-        resources: {
-          title: 'Content Creation',
-          description: 'Educational materials'
+        professional: {
+          name: 'Professional',
+          description: 'For individual legal professionals.',
+          queries: '60 queries / day',
+          features: ['Everything in Student', 'Claude AI for English queries', 'Document upload & analysis', 'Legal templates', 'Analytics dashboard', '24/7 support'],
+          cta: 'Start Professional',
         },
-        documents: {
-          title: 'Tool Development',
-          description: 'Legal assistance tools'
+        firm: {
+          name: 'Firm',
+          description: 'For law firms needing team access.',
+          queries: '200 shared queries / day',
+          features: ['Everything in Professional', '3 team seats included', 'API access', 'Priority processing', 'Dedicated account manager'],
+          cta: 'Start Firm',
         },
-        jobs: {
-          title: 'Community Building',
-          description: 'Professional network'
-        },
-        community: {
-          title: 'Launch Preparation',
-          description: 'Final preparations'
-        }
-      }
-    },
-    newsletter: {
-      title: 'Stay Informed',
-      subtitle: 'Be the first to know when we launch. Join our waitlist for early access.',
-      placeholder: 'Enter your email address',
-      joinWaitlist: 'Join Waitlist',
-      successTitle: "You're on the list!",
-      successMessage: "We'll notify you when Lawguide.lk is ready.",
-      noSpam: 'No spam — just updates when we\'re ready.'
+      },
     },
     footer: {
-      title: 'Lawguide.lk',
-      madeIn: 'Made in Sri Lanka',
-      description: 'Building the future of legal access in Sri Lanka.',
-      buildTogether: '',
-      copyright: '© 2024 Lawguide.lk. All rights reserved.',
-      language: 'Language'
-    }
+      tagline: 'Lawguide.lk',
+      description: 'AI-powered legal research for Sri Lanka. Built for lawyers, law students, and everyone who needs to understand the law.',
+      copyright: '© 2025 Lawguide.lk. All rights reserved.',
+      disclaimer: 'Not a substitute for advice from a qualified attorney.',
+      platform: 'Platform',
+      links: [
+        { label: 'Try Free', href: `${APP}/en/register` },
+        { label: 'Features', href: '#features' },
+        { label: 'Pricing', href: '#pricing' },
+        { label: 'App Login', href: APP },
+      ],
+      info: 'Info',
+      languages: 'English · සිංහල · தமிழ்',
+      payments: 'PayHere.lk — LKR only',
+      builtIn: 'Sri Lanka 🇱🇰',
+    },
+    nav: {
+      features: 'Features',
+      pricing: 'Pricing',
+      tryFree: 'Try Free',
+      menu: 'Menu',
+      close: 'Close',
+      stillBuilding: 'Still Building',
+    },
   },
+
   si: {
-    header: {
-      title: 'Lawguide.lk',
-      comingSoon: 'ඉදිරියේදී',
-      language: 'සිංහල'
-    },
     hero: {
-      location: 'ශ්‍රී ලංකාවේ නීති වේදිකාව',
-      title: 'නීතිමය මනස්',
-      titleHighlight: 'සවිබල ගැන්වීම',
-      description: 'Lawguide.lk යනු නීති ශිෂ්‍යයන්, නීති වෘත්තිකයන් සහ සාමාන්‍ය පුරවැසියන්ට නීති සම්පත් සහ සේවා පහසුවෙන් ප්‍රවේශ වීමට උපකාර කිරීම සඳහා නිර්මාණය කරන ලද ශ්‍රී ලංකාවේ ඉදිරියේදී එන නීති වේදිකාවකි.',
-      joinWaitlist: 'පොරොත්තු ලැයිස්තුවට සම්බන්ධ වන්න',
-      comingSoonNote: 'ඉදිරියේදී — ඔබ සමඟ ගොඩනගා ඇත'
+      badge: 'ශ්‍රී ලංකාවේ නීති AI වේදිකාව',
+      titleLine1: 'AI නීති',
+      titleLine2: 'පර්යේෂණ',
+      titleAccent: 'ශ්‍රී ලංකාව සඳහා.',
+      description:
+        'ශ්‍රී ලංකාවේ 1704+ පනත්, 26,000+ නඩු නීති ලේඛන හා ශ්‍රේෂ්ඨාධිකරණ තීරණ ඔස්සේ RAG-බල ලත් පිළිතුරු. ඉංග්‍රීසි, සිංහල හා දෙමළ භාෂාවලින්. ක්ෂණික. සනාථ. නිවැරදි.',
+      ctaPrimary: 'නොමිලේ ආරම්භ කරන්න — දිනකට ප්‍රශ්න 5',
+      ctaSecondary: 'Plans බලන්න',
+      trustItems: ['ක්‍රෙඩිට් කාඩ් නැත', 'පනත් 1704 ගොනු කර ඇත', 'නඩු ලේඛන 26K+'],
+      stillBuilding: 'තවම ගොඩනඟමින්',
     },
-    features: {
-      title: 'අපි ගොඩනගන දේ',
-      subtitle: 'ශ්‍රී ලංකා නීති පරිසර පද්ධතිය සඳහා සම්පූර්ණ නීති වේදිකාවක්',
-      items: {
-        library: {
-          title: 'නීති සම්පත්',
-          description: 'නීති තොරතුරු සහ සම්පත් වෙත ප්‍රවේශය'
-        },
-        consultations: {
-          title: 'ප්‍රවීණ උපදේශන',
-          description: 'නීති වෘත්තිකයන් සමඟ සම්බන්ධ වන්න'
-        },
-        resources: {
-          title: 'අධ්‍යාපනික අන්තර්ගතය',
-          description: 'ඉගෙනුම් ද්‍රව්‍ය සහ සම්පත්'
-        },
-        jobs: {
-          title: 'වෘත්තීය අවස්ථා',
-          description: 'නීති වෘත්තීය සහ රැකියා අවස්ථා'
-        },
-        bookstore: {
-          title: 'නීති ප්‍රකාශන',
-          description: 'පොත් සහ නීති ප්‍රකාශන'
-        },
-        documents: {
-          title: 'ලේඛන සේවා',
-          description: 'නීති ලේඛන සහාය'
-        },
-        management: {
-          title: 'පුහුණු මෙවලම්',
-          description: 'නීති වෘත්තිකයන් සඳහා මෙවලම්'
-        },
-        community: {
-          title: 'ප්‍රජාව',
-          description: 'නීති ප්‍රජාව සමඟ සම්බන්ධ වන්න'
-        }
-      }
+    featureRows: {
+      f1: {
+        tag: 'RAG සෙවීම',
+        title: 'ඕනෑම දෙයක්\nඅසන්න.',
+        body: 'අපගේ RAG ක්‍රමය 1704+ පනත් සහ 26,000+ නඩු නීති ලේඛන සිතාසිතා සෙවේ. සෑම පිළිතුරක්ම නිශ්චිත මූලාශ්‍රය ඇතුළත් වේ — පනත් අංකය, කොටස, තීරණ යොමු.',
+      },
+      f2: {
+        tag: 'බහු භාෂා',
+        title: 'ඉංග්‍රීසි.\nසිංහල. දෙමළ.',
+        body: 'ශ්‍රී ලංකාව කතා කරන ඕනෑම භාෂාවකින් අසන්න. Lawguide සියලු නිල භාෂා තිදෙනෙහිම සම්පූර්ණ නීතිමය නිරවද්‍යතාවයෙන් යුතුව තේරෙන ලෙස පිළිතුරු දෙයි.',
+      },
+      f3: {
+        tag: 'නඩු නීතිය',
+        title: 'තීරණ 2100+\nඔබේ අතේ.',
+        body: 'ශ්‍රේෂ්ඨාධිකරණ සහ අභියාචනාධිකරණ තීරණ සම්පූර්ණයෙන් ගොනු කොට සිතාසිතා සෙවිය හැකිය. AI ratio decidendi සහ ප්‍රධාන මූලධර්ම උකහා ගෙන ඔබේ පිළිතුරට ගැලපෙන තීරණය දක්වයි.',
+      },
+      f4: {
+        tag: 'උපදේශන',
+        title: 'නිවැරදි\nනීති උපදෙස් ලබා ගන්න.',
+        body: 'AI ප්‍රමාණවත් නොවන විට, වේදිකාව හරහා සත්‍යාපිත ශ්‍රී ලාංකේය නීඥ ශිල්පියෙකු සෘජුවම Book කරන්න. රට පුරා සුදුසු වෘත්තිකයන් — මිනිත්තු ගණනකින් කාලසූචිය සකස් කරයි.',
+      },
+      f5: {
+        tag: 'නීති පුස්තකාලය',
+        title: 'පනත් 1704.\nසම්පූර්ණයෙන් සෙවිය හැකිය.',
+        body: 'ශ්‍රී ලංකා පාර්ලිමේන්තුවේ සෑම පනතක්ම සම්පූර්ණ-පෙළ සෙවීමෙන් ගොනු කර ඇත. කාණ්ඩ අනුව බ්‍රවුස් කරන්න, මූල පද අනුව සෙවන්න, නැතහොත් AI ට අදාළ නීති ස්වයංක්‍රීයව සොයා ගැනීමට ඉඩ දෙන්න.',
+      },
+      f6: {
+        tag: 'රැකියා Hub',
+        title: 'නීතිය ක්ෂේත්‍රයේ\nරැකියා.',
+        body: 'ශ්‍රී ලංකාවේ නීති ක්ෂේත්‍රය සඳහා කැප වූ රැකියා ද්වාරයකි. නීති ආයතන, ආයතනික නීති කණ්ඩායම් සහ NGO රැකියා ශිෂ්‍යයන් සහ වෘත්තිකයන් සඳහා ලඟා වන ස්ථානය.',
+      },
     },
-    audience: {
-      title: 'මෙය කාටද?',
-      subtitle: 'ශ්‍රී ලංකාවේ නීති පරිසර පද්ධතියේ සියලු දෙනා සඳහා නිර්මාණය කර ඇත',
-      items: {
-        students: {
-          title: 'නීති ශිෂ්‍යයන්',
-          description: 'නීති අධ්‍යාපනය සඳහා සම්පත් සහ සහාය'
-        },
-        professionals: {
-          title: 'නීති වෘත්තිකයන්',
-          description: 'වෘත්තිකයන් සඳහා මෙවලම් සහ අවස්ථා'
-        },
-        corporates: {
-          title: 'සංවිධාන',
-          description: 'ව්‍යාපාර සඳහා නීති විසඳුම්'
-        },
-        individuals: {
-          title: 'සාමාන්‍ය මහජනතාව',
-          description: 'සියලු දෙනා සඳහා නීති උපකාර සහ මාර්ගෝපදේශනය'
-        }
-      }
+    stats: [
+      { value: '1704+', label: 'පනත් හා රෙගුලාසි', sub: 'ශ්‍රී ලංකාවේ සියලු නීති ගොනු කර ඇත' },
+      { value: '26K+', label: 'නඩු නීති ලේඛන', sub: 'ශ්‍රේෂ්ඨාධිකරණ හා අභියාචනාධිකරණ' },
+      { value: '3', label: 'භාෂා', sub: 'ඉංග්‍රීසි · සිංහල · දෙමළ' },
+      { value: '<2s', label: 'ප්‍රතිචාර කාලය', sub: 'Gemini 2.0 Flash බලයෙන්' },
+    ],
+    waitlist: {
+      title: 'Early Access ලබා ගන්න.',
+      body: 'Lawguide තවමත් ගොඩනඟමින් පවතී. Waitlist එකට සම්බන්ධ වන්න — අපි Live වූ වහාම දන්වන්නෙමු.',
+      placeholder: 'ඔබේ@email.com',
+      cta: 'Waitlist එකට සම්බන්ධ වන්න',
+      success: 'ඔබ ලැයිස්තුවේ. ඉක්මනින් සම්බන්ධ වන්නෙමු.',
+      note: 'Spam නැත. Launch වූ විට එකම email එකක් පමණයි.',
     },
-    status: {
-      title: 'ඉදිරියේදී',
-      subtitle: 'අපි ශ්‍රී ලංකාවේ නීති ප්‍රජාව සඳහා විශේෂ දෙයක් ගොඩනගමින් සිටිමු.',
-      roadmapTitle: 'සංවර්ධනයේ',
-      mainLanguage: 'ප්‍රධාන භාෂාව: ඉංග්‍රීසි',
-      localizationNote: 'බහු භාෂා සහාය ඉදිරියේදී',
-      roadmapItems: {
-        library: {
-          title: 'වේදිකා සංවර්ධනය',
-          description: 'මූලික වේදිකා විශේෂාංග'
+    pricing: {
+      tag: 'මිල ගණන්',
+      title: 'සෑම නීති',
+      titleLine2: 'අවශ්‍යතාවකටම.',
+      body: 'LKR වලින් ගෙවන්න. ඕනෑ වෙලාවක Cancel කරන්න. සියලු ගෙවූ Plans වලට දින 7 Free Trial.',
+      monthly: 'මාසික',
+      annual: 'වාර්ෂික',
+      annualBadge: 'මාස 2 ක් නිදහස්',
+      footerNote: 'PayHere.lk හරහා LKR වලින් ගෙවීම. සියලු ගෙවූ Plans වලට දින 7 Free Trial.',
+      noCard: 'ක්‍රෙඩිට් කාඩ් අවශ්‍ය නැත',
+      popular: 'වඩාත් ජනප්‍රිය',
+      plans: {
+        free: {
+          name: 'නොමිලේ',
+          description: 'Lawguide උත්සාහ කරන්න.',
+          queries: 'දිනකට ප්‍රශ්න 5',
+          features: ['AI නීති Q&A (ඉංග්‍රීසි)', 'මූලික පුස්තකාල ප්‍රවේශය', 'සනාථ පිළිතුරු', 'Email සහාය'],
+          cta: 'නොමිලේ ආරම්භ කරන්න',
         },
-        consultations: {
-          title: 'සේවා ඒකාබද්ධකරණය',
-          description: 'වෘත්තීය සේවා'
+        student: {
+          name: 'ශිෂ්‍ය',
+          description: 'නීති ශිෂ්‍යයන් සඳහා.',
+          queries: 'දිනකට ප්‍රශ්න 15',
+          features: ['Free Plan සියල්ල', 'සිංහල හා දෙමළ', 'Chat ඉතිහාසය', 'සම්පූර්ණ පුස්තකාලය', 'ප්‍රමුඛ Email සහාය'],
+          cta: 'ශිෂ්‍ය Plan ආරම්භ කරන්න',
         },
-        resources: {
-          title: 'අන්තර්ගත නිර්මාණය',
-          description: 'අධ්‍යාපනික ද්‍රව්‍ය'
+        professional: {
+          name: 'වෘත්තීය',
+          description: 'නීති වෘත්තිකයන් සඳහා.',
+          queries: 'දිනකට ප්‍රශ්න 60',
+          features: ['Student Plan සියල්ල', 'Claude AI (ඉංග්‍රීසි)', 'ලේඛන Upload හා විශ්ලේෂණය', 'නීති Templates', 'Analytics', '24/7 සහාය'],
+          cta: 'වෘත්තීය Plan ආරම්භ කරන්න',
         },
-        documents: {
-          title: 'මෙවලම් සංවර්ධනය',
-          description: 'නීති සහාය මෙවලම්'
+        firm: {
+          name: 'නීති ආයතන',
+          description: 'නීති ආයතන සඳහා.',
+          queries: 'දිනකට ප්‍රශ්න 200',
+          features: ['Professional Plan සියල්ල', 'Seats 3', 'API ප්‍රවේශය', 'ප්‍රමුඛ සැකසීම', 'කැප වූ සහාය'],
+          cta: 'ආයතන Plan ආරම්භ කරන්න',
         },
-        jobs: {
-          title: 'ප්‍රජා ගොඩනැගීම',
-          description: 'වෘත්තීය ජාලය'
-        },
-        community: {
-          title: 'දියත් කිරීමේ සූදානම',
-          description: 'අවසාන සූදානම්'
-        }
-      }
-    },
-    newsletter: {
-      title: 'දැනුවත්ව සිටින්න',
-      subtitle: 'අපි දියත් කරන විට පළමුව දැන ගන්න. පූර්ව ප්‍රවේශය සඳහා අපගේ පොරොත්තු ලැයිස්තුවට සම්බන්ධ වන්න.',
-      placeholder: 'ඔබේ ඊමේල් ලිපිනය ඇතුළත් කරන්න',
-      joinWaitlist: 'පොරොත්තු ලැයිස්තුවට සම්බන්ධ වන්න',
-      successTitle: 'ඔබ ලැයිස්තුවේ!',
-      successMessage: 'Lawguide.lk සූදානම් වූ විට අපි ඔබට දන්වන්නෙමු.',
-      noSpam: 'ස්පෑම් නැත — අපි සූදානම් වූ විට පමණක් යාවත්කාලීන.'
+      },
     },
     footer: {
-      title: 'Lawguide.lk',
-      madeIn: 'ශ්‍රී ලංකාවේ සාදන ලදී',
-      description: 'ශ්‍රී ලංකාවේ නීති ප්‍රවේශයේ අනාගතය ගොඩනගමින්.',
-      buildTogether: '',
-      copyright: '© 2024 Lawguide.lk. සියලුම හිමිකම් ඇවිරිණි.',
-      language: 'භාෂාව'
-    }
+      tagline: 'Lawguide.lk',
+      description: 'ශ්‍රී ලංකාව සඳහා AI-බල ලත් නීති පර්යේෂණය. නීඥ ශිල්පීන්, ශිෂ්‍යයන් සහ නීතිය දැනගැනීමට අවශ්‍ය සියල්ලන් සඳහා.',
+      copyright: '© 2025 Lawguide.lk. සියලු හිමිකම් ඇවිරිණි.',
+      disclaimer: 'සුදුසුකම් ලත් නීඥ ශිල්පියෙකුගේ උපදෙස් සඳහා ආදේශකයක් නොවේ.',
+      platform: 'වේදිකාව',
+      links: [
+        { label: 'නොමිලේ ලබා ගන්න', href: `${APP}/en/register` },
+        { label: 'විශේෂාංග', href: '#features' },
+        { label: 'මිල ගණන්', href: '#pricing' },
+        { label: 'App Login', href: APP },
+      ],
+      info: 'තොරතුරු',
+      languages: 'ඉංග්‍රීසි · සිංහල · දෙමළ',
+      payments: 'PayHere.lk — LKR',
+      builtIn: 'ශ්‍රී ලංකාව 🇱🇰',
+    },
+    nav: {
+      features: 'විශේෂාංග',
+      pricing: 'මිල ගණන්',
+      tryFree: 'නොමිලේ',
+      menu: 'මෙනු',
+      close: 'වසන්න',
+      stillBuilding: 'තවම ගොඩනඟමින්',
+    },
   },
+
   ta: {
-    header: {
-      title: 'Lawguide.lk',
-      comingSoon: 'விரைவில்',
-      language: 'தமிழ்'
-    },
     hero: {
-      location: 'இலங்கையின் சட்ட தளம்',
-      title: 'சட்ட மனங்களை',
-      titleHighlight: 'வலுப்படுத்துதல்',
-      description: 'Lawguide.lk என்பது சட்ட மாணவர்கள், சட்ட நிபுணர்கள் மற்றும் சாதாரண குடிமக்கள் சட்ட வளங்கள் மற்றும் சேவைகளை எளிதாக அணுக உதவ வடிவமைக்கப்பட்ட இலங்கையின் வரவிருக்கும் சட்ட தளமாகும்.',
-      joinWaitlist: 'காத்திருப்பு பட்டியலில் சேரவும்',
-      comingSoonNote: 'விரைவில் — உங்களுடன் கட்டமைக்கப்பட்டது'
+      badge: 'இலங்கையின் சட்ட AI தளம்',
+      titleLine1: 'AI சட்ட',
+      titleLine2: 'ஆராய்ச்சி',
+      titleAccent: 'இலங்கைக்காக.',
+      description:
+        'இலங்கையின் 1704+ சட்டங்கள், 26,000+ வழக்கு சட்ட ஆவணங்கள் மற்றும் உச்ச நீதிமன்ற தீர்ப்புகளில் RAG-இயக்கப்பட்ட பதில்கள். ஆங்கிலம், சிங்களம் மற்றும் தமிழில். உடனடி. மேற்கோள். துல்லியம்.',
+      ctaPrimary: 'இலவசமாக தொடங்குங்கள் — 5 கேள்விகள்/நாள்',
+      ctaSecondary: 'திட்டங்கள் காண்க',
+      trustItems: ['கார்டு தேவையில்லை', '1704 சட்டங்கள் பட்டியலிடப்பட்டது', '26K+ வழக்கு சட்ட ஆவணங்கள்'],
+      stillBuilding: 'இன்னும் கட்டமைக்கப்படுகிறது',
     },
-    features: {
-      title: 'நாங்கள் கட்டமைப்பது',
-      subtitle: 'இலங்கை சட்ட சுற்றுச்சூழல் அமைப்புக்கான விரிவான சட்ட தளம்',
-      items: {
-        library: {
-          title: 'சட்ட வளங்கள்',
-          description: 'சட்ட தகவல் மற்றும் வளங்களுக்கான அணுகல்'
-        },
-        consultations: {
-          title: 'நிபுணர் ஆலோசனைகள்',
-          description: 'சட்ட நிபுணர்களுடன் இணைக்கவும்'
-        },
-        resources: {
-          title: 'கல்வி உள்ளடக்கம்',
-          description: 'கற்றல் பொருட்கள் மற்றும் வளங்கள்'
-        },
-        jobs: {
-          title: 'தொழில் வாய்ப்புகள்',
-          description: 'சட்ட தொழில் மற்றும் வேலை வாய்ப்புகள்'
-        },
-        bookstore: {
-          title: 'சட்ட வெளியீடுகள்',
-          description: 'புத்தகங்கள் மற்றும் சட்ட வெளியீடுகள்'
-        },
-        documents: {
-          title: 'ஆவண சேவைகள்',
-          description: 'சட்ட ஆவண உதவி'
-        },
-        management: {
-          title: 'பயிற்சி கருவிகள்',
-          description: 'சட்ட நிபுணர்களுக்கான கருவிகள்'
-        },
-        community: {
-          title: 'சமூகம்',
-          description: 'சட்ட சமூகத்துடன் இணைக்கவும்'
-        }
-      }
+    featureRows: {
+      f1: {
+        tag: 'RAG தேடல்',
+        title: 'எதையும்\nகேளுங்கள்.',
+        body: 'எங்கள் RAG அமைப்பு 1704+ சட்டங்கள் மற்றும் 26,000+ வழக்கு சட்ட ஆவணங்களை நிகழ்நேரத்தில் தேடுகிறது. ஒவ்வொரு பதிலும் துல்லியமான ஆதாரத்தை உள்ளடக்கியது — சட்ட எண், பிரிவு, தீர்ப்பு குறிப்பு.',
+      },
+      f2: {
+        tag: 'பலமொழி',
+        title: 'ஆங்கிலம்.\nசிங்களம். தமிழ்.',
+        body: 'இலங்கை பேசும் எந்த மொழியிலும் கேளுங்கள். Lawguide மூன்று அதிகாரப்பூர்வ மொழிகளிலும் முழு சட்ட துல்லியத்துடன் புரிந்து பதிலளிக்கும்.',
+      },
+      f3: {
+        tag: 'வழக்கு சட்டம்',
+        title: '2100+ தீர்ப்புகள்\nகைவசம்.',
+        body: 'உச்ச நீதிமன்றம் மற்றும் மேல்முறையீட்டு நீதிமன்ற தீர்ப்புகள் முழுமையாக பட்டியலிடப்பட்டு தேடக்கூடியவை. AI ratio decidendi பிரித்தெடுத்து உங்கள் கேள்விக்கு பொருத்தமான தீர்ப்பை நேரடியாக மேற்கோள் காட்டுகிறது.',
+      },
+      f4: {
+        tag: 'ஆலோசனை',
+        title: 'நிபுணர்\nசட்ட ஆலோசனை.',
+        body: 'AI போதுமானதாக இல்லாதபோது, தளம் மூலம் சரிபார்க்கப்பட்ட இலங்கை வழக்கறிஞரை நேரடியாக முன்பதிவு செய்யுங்கள். தீவு முழுவதும் தகுதிவாய்ந்த நிபுணர்கள் — நிமிடங்களில் திட்டமிடப்படுகிறது.',
+      },
+      f5: {
+        tag: 'சட்ட நூலகம்',
+        title: '1704 சட்டங்கள்.\nதேடக்கூடியவை.',
+        body: 'இலங்கை நாடாளுமன்றத்தின் ஒவ்வொரு சட்டமும் முழு-உரை தேடலுடன் பட்டியலிடப்பட்டுள்ளது. வகை வாரியாக உலாவுங்கள், முக்கியச்சொல்லால் தேடுங்கள்.',
+      },
+      f6: {
+        tag: 'வேலைகள் Hub',
+        title: 'சட்ட வேலைகள் &\nவாய்ப்புகள்.',
+        body: 'இலங்கை சட்டத் துறைக்கான அர்ப்பணிக்கப்பட்ட வேலை போர்டல். சட்ட நிறுவனங்கள், நிறுவன சட்டக் குழுக்கள் மற்றும் NGOக்கள் பதவிகளை பதிவு செய்கின்றன.',
+      },
     },
-    audience: {
-      title: 'இது யாருக்காக?',
-      subtitle: 'இலங்கையின் சட்ட சுற்றுச்சூழல் அமைப்பில் உள்ள அனைவருக்கும் வடிவமைக்கப்பட்டுள்ளது',
-      items: {
-        students: {
-          title: 'சட்ட மாணவர்கள்',
-          description: 'சட்டக் கல்விக்கான வளங்கள் மற்றும் ஆதரவு'
-        },
-        professionals: {
-          title: 'சட்ட நிபுணர்கள்',
-          description: 'பயிற்சியாளர்களுக்கான கருவிகள் மற்றும் வாய்ப்புகள்'
-        },
-        corporates: {
-          title: 'அமைப்புகள்',
-          description: 'வணிகங்களுக்கான சட்ட தீர்வுகள்'
-        },
-        individuals: {
-          title: 'பொது மக்கள்',
-          description: 'அனைவருக்கும் சட்ட உதவி மற்றும் வழிகாட்டுதல்'
-        }
-      }
+    stats: [
+      { value: '1704+', label: 'சட்டங்கள் & விதிமுறைகள்', sub: 'அனைத்து இலங்கை சட்டமன்ற சட்டங்கள்' },
+      { value: '26K+', label: 'வழக்கு சட்ட ஆவணங்கள்', sub: 'உச்ச நீதிமன்றம் & மேல்முறையீட்டு நீதிமன்றம்' },
+      { value: '3', label: 'மொழிகள்', sub: 'ஆங்கிலம் · சிங்களம் · தமிழ்' },
+      { value: '<2s', label: 'பதில் நேரம்', sub: 'Gemini 2.0 Flash ஆல் இயக்கப்படுகிறது' },
+    ],
+    waitlist: {
+      title: 'ஆரம்ப அணுகல் பெறுங்கள்.',
+      body: 'Lawguide இன்னும் கட்டமைக்கப்படுகிறது. காத்திருப்பு பட்டியலில் சேருங்கள் — நாங்கள் நேரடியாகச் செல்லும்போது அறிவிப்போம்.',
+      placeholder: 'உங்கள்@email.com',
+      cta: 'காத்திருப்பு பட்டியலில் சேரவும்',
+      success: 'நீங்கள் பட்டியலில் உள்ளீர்கள். விரைவில் தொடர்பு கொள்வோம்.',
+      note: 'ஸ்பேம் இல்லை. தொடங்கும்போது ஒரு மின்னஞ்சல் மட்டும்.',
     },
-    status: {
-      title: 'விரைவில்',
-      subtitle: 'இலங்கையின் சட்ட சமூகத்திற்காக நாங்கள் சிறப்பான ஒன்றை உருவாக்கி வருகிறோம்.',
-      roadmapTitle: 'மேம்பாட்டில்',
-      mainLanguage: 'முக்கிய மொழி: ஆங்கிலம்',
-      localizationNote: 'பல மொழி ஆதரவு விரைவில்',
-      roadmapItems: {
-        library: {
-          title: 'தள மேம்பாடு',
-          description: 'முக்கிய தள அம்சங்கள்'
+    pricing: {
+      tag: 'விலை',
+      title: 'ஒவ்வொரு சட்ட',
+      titleLine2: 'தேவைக்கும்.',
+      body: 'LKR இல் செலுத்துங்கள். எப்போது வேண்டுமானாலும் ரத்துசெய்யுங்கள். அனைத்து கட்டண திட்டங்களுக்கும் 7 நாள் இலவச சோதனை.',
+      monthly: 'மாதாந்திர',
+      annual: 'வருடாந்திர',
+      annualBadge: '2 மாதங்கள் இலவசம்',
+      footerNote: "PayHere.lk மூலம் LKR இல் கட்டணம். அனைத்து கட்டண திட்டங்களுக்கும் 7 நாள் இலவச சோதனை.",
+      noCard: 'கிரெடிட் கார்டு தேவையில்லை',
+      popular: 'மிகவும் பிரபலமானது',
+      plans: {
+        free: {
+          name: 'இலவசம்',
+          description: 'Lawguide முயற்சி செய்யுங்கள்.',
+          queries: 'நாளுக்கு 5 கேள்விகள்',
+          features: ['AI சட்ட Q&A (ஆங்கிலம்)', 'அடிப்படை நூலக அணுகல்', 'மேற்கோள் பதில்கள்', 'மின்னஞ்சல் ஆதரவு'],
+          cta: 'இலவசமாக தொடங்குங்கள்',
         },
-        consultations: {
-          title: 'சேவை ஒருங்கிணைப்பு',
-          description: 'தொழில்முறை சேவைகள்'
+        student: {
+          name: 'மாணவர்',
+          description: 'சட்ட மாணவர்களுக்கு.',
+          queries: 'நாளுக்கு 15 கேள்விகள்',
+          features: ['இலவசத்தில் அனைத்தும்', 'சிங்களம் & தமிழ்', 'அரட்டை வரலாறு', 'முழு நூலக அணுகல்', 'முன்னுரிமை ஆதரவு'],
+          cta: 'மாணவர் திட்டம் தொடங்குங்கள்',
         },
-        resources: {
-          title: 'உள்ளடக்க உருவாக்கம்',
-          description: 'கல்வி பொருட்கள்'
+        professional: {
+          name: 'தொழில்முறை',
+          description: 'சட்ட நிபுணர்களுக்கு.',
+          queries: 'நாளுக்கு 60 கேள்விகள்',
+          features: ['மாணவரில் அனைத்தும்', 'Claude AI (ஆங்கிலம்)', 'ஆவண பதிவேற்றம்', 'சட்ட வார்ப்புருக்கள்', 'Analytics', '24/7 ஆதரவு'],
+          cta: 'தொழில்முறை திட்டம் தொடங்குங்கள்',
         },
-        documents: {
-          title: 'கருவி மேம்பாடு',
-          description: 'சட்ட உதவி கருவிகள்'
+        firm: {
+          name: 'நிறுவனம்',
+          description: 'சட்ட நிறுவனங்களுக்கு.',
+          queries: 'நாளுக்கு 200 பகிரப்பட்ட கேள்விகள்',
+          features: ['தொழில்முறையில் அனைத்தும்', '3 குழு இடங்கள்', 'API அணுகல்', 'முன்னுரிமை செயலாக்கம்', 'அர்ப்பணிக்கப்பட்ட ஆதரவு'],
+          cta: 'நிறுவன திட்டம் தொடங்குங்கள்',
         },
-        jobs: {
-          title: 'சமூக கட்டமைப்பு',
-          description: 'தொழில்முறை வலையமைப்பு'
-        },
-        community: {
-          title: 'வெளியீட்டு தயாரிப்பு',
-          description: 'இறுதி தயாரிப்புகள்'
-        }
-      }
-    },
-    newsletter: {
-      title: 'தகவலறிந்து இருங்கள்',
-      subtitle: 'நாங்கள் தொடங்கும்போது முதலில் தெரிந்து கொள்ளுங்கள். முன்கூட்டிய அணுகலுக்காக எங்கள் காத்திருப்பு பட்டியலில் சேருங்கள்.',
-      placeholder: 'உங்கள் மின்னஞ்சல் முகவரியை உள்ளிடவும்',
-      joinWaitlist: 'காத்திருப்பு பட்டியலில் சேரவும்',
-      successTitle: 'நீங்கள் பட்டியலில் உள்ளீர்கள்!',
-      successMessage: 'Lawguide.lk தயாராக இருக்கும்போது நாங்கள் உங்களுக்கு அறிவிப்போம்.',
-      noSpam: 'ஸ்பேம் இல்லை — நாங்கள் தயாராக இருக்கும்போது மட்டும் புதுப்பிப்புகள்.'
+      },
     },
     footer: {
-      title: 'Lawguide.lk',
-      madeIn: 'இலங்கையில் தயாரிக்கப்பட்டது',
-      description: 'இலங்கையில் சட்ட அணுகலின் எதிர்காலத்தை உருவாக்குதல்.',
-      buildTogether: '',
-      copyright: '© 2024 Lawguide.lk. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
-      language: 'மொழி'
-    }
-  }
+      tagline: 'Lawguide.lk',
+      description: 'இலங்கைக்கான AI-இயக்கப்பட்ட சட்ட ஆராய்ச்சி. வழக்கறிஞர்கள், சட்ட மாணவர்கள் மற்றும் சட்டத்தை புரிந்துகொள்ள விரும்பும் அனைவருக்கும்.',
+      copyright: '© 2025 Lawguide.lk. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
+      disclaimer: 'தகுதிவாய்ந்த வழக்கறிஞரின் ஆலோசனைக்கு மாற்றாக அல்ல.',
+      platform: 'தளம்',
+      links: [
+        { label: 'இலவசமாக முயற்சி', href: `${APP}/en/register` },
+        { label: 'அம்சங்கள்', href: '#features' },
+        { label: 'விலை', href: '#pricing' },
+        { label: 'App உள்நுழைவு', href: APP },
+      ],
+      info: 'தகவல்',
+      languages: 'ஆங்கிலம் · சிங்களம் · தமிழ்',
+      payments: 'PayHere.lk — LKR மட்டும்',
+      builtIn: 'இலங்கை 🇱🇰',
+    },
+    nav: {
+      features: 'அம்சங்கள்',
+      pricing: 'விலை',
+      tryFree: 'இலவசம்',
+      menu: 'மெனு',
+      close: 'மூடு',
+      stillBuilding: 'இன்னும் கட்டமைக்கப்படுகிறது',
+    },
+  },
 };
