@@ -14,11 +14,11 @@ export default function SiteFooter() {
   const f = t.footer;
 
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="grid md:grid-cols-3 border-b border-gray-800">
+    <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white transition-colors duration-200">
+      <div className="grid md:grid-cols-3 border-b border-gray-200 dark:border-gray-800">
 
         {/* Brand */}
-        <div className="px-8 lg:px-12 py-12 border-b md:border-b-0 md:border-r border-gray-800">
+        <div className="px-6 sm:px-8 lg:px-12 py-10 md:py-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800">
           <div className="flex items-center gap-2.5 mb-4">
             <div className="w-7 h-7 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0">
               <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -26,26 +26,26 @@ export default function SiteFooter() {
               </svg>
             </div>
             <div>
-              <div className="font-black text-white uppercase text-base leading-none tracking-tight">Lawguide</div>
-              <div className="text-blue-400 font-mono text-[10px]">.lk</div>
+              <div className="font-black text-gray-900 dark:text-white uppercase text-base leading-none tracking-tight">Lawguide</div>
+              <div className="text-blue-600 font-mono text-[10px]">.lk</div>
             </div>
           </div>
-          <p className="font-mono text-xs text-gray-400 leading-relaxed max-w-xs mb-5">{f.description}</p>
+          <p className="font-mono text-xs text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs mb-5">{f.description}</p>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-            <span className="font-mono text-xs text-amber-400/70 uppercase tracking-widest">Still Building</span>
+            <span className="font-mono text-xs text-amber-600 dark:text-amber-400 uppercase tracking-widest">Still Building</span>
           </div>
         </div>
 
         {/* Platform links */}
-        <div className="px-8 py-12 border-b md:border-b-0 md:border-r border-gray-800">
-          <div className="font-black text-[10px] uppercase tracking-widest text-gray-500 mb-5">{f.platform}</div>
+        <div className="px-6 sm:px-8 py-10 md:py-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800">
+          <div className="font-black text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-5">{f.platform}</div>
           <div className="flex flex-col gap-3">
             {f.links.map((link) => (
               <button
                 key={link.label}
                 onClick={() => scrollTo(link.href)}
-                className="text-left font-mono text-xs text-gray-400 hover:text-blue-400 transition-colors uppercase tracking-widest"
+                className="text-left font-mono text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase tracking-widest"
               >
                 {link.label}
               </button>
@@ -54,20 +54,20 @@ export default function SiteFooter() {
         </div>
 
         {/* Info */}
-        <div className="px-8 py-12">
-          <div className="font-black text-[10px] uppercase tracking-widest text-gray-500 mb-5">{f.info}</div>
+        <div className="px-6 sm:px-8 py-10 md:py-12">
+          <div className="font-black text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-5">{f.info}</div>
           <div className="flex flex-col gap-4">
             <div>
-              <div className="font-mono text-[10px] text-gray-600 uppercase tracking-widest mb-1">Languages</div>
-              <div className="font-mono text-xs text-gray-400">{f.languages}</div>
+              <div className="font-mono text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1">Languages</div>
+              <div className="font-mono text-xs text-gray-600 dark:text-gray-400">{f.languages}</div>
             </div>
             <div>
-              <div className="font-mono text-[10px] text-gray-600 uppercase tracking-widest mb-1">Payments</div>
-              <div className="font-mono text-xs text-gray-400">{f.payments}</div>
+              <div className="font-mono text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1">Payments</div>
+              <div className="font-mono text-xs text-gray-600 dark:text-gray-400">{f.payments}</div>
             </div>
             <div>
-              <div className="font-mono text-[10px] text-gray-600 uppercase tracking-widest mb-1">Built in</div>
-              <div className="font-mono text-xs text-gray-400">{f.builtIn}</div>
+              <div className="font-mono text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1">Built in</div>
+              <div className="font-mono text-xs text-gray-600 dark:text-gray-400">{f.builtIn}</div>
             </div>
           </div>
         </div>
@@ -75,9 +75,9 @@ export default function SiteFooter() {
       </div>
 
       {/* Bottom bar */}
-      <div className="px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-        <p className="font-mono text-xs text-gray-600">{f.copyright}</p>
-        <p className="font-mono text-[10px] text-gray-700 uppercase tracking-wider">{f.disclaimer}</p>
+      <div className="px-6 sm:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <p className="font-mono text-xs text-gray-400 dark:text-gray-500">{f.copyright}</p>
+        <p className="font-mono text-[10px] text-gray-300 dark:text-gray-600 uppercase tracking-wider">{f.disclaimer}</p>
       </div>
     </footer>
   );

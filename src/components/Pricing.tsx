@@ -27,28 +27,30 @@ export default function Pricing() {
   const p = t.pricing;
 
   return (
-    <section id="pricing" className="bg-gray-50 border-b border-gray-200">
+    <section id="pricing" className="bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 transition-colors duration-200">
 
       {/* Header */}
-      <div className="px-8 lg:px-12 py-16 border-b border-gray-200 bg-white">
+      <div className="px-6 sm:px-8 lg:px-12 py-10 md:py-16 border-b border-gray-200 dark:border-gray-800">
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.5 }}
         >
-          <span className="inline-block font-mono text-xs uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 rounded-full px-3 py-1 mb-6">
+          <span className="inline-block font-mono text-xs uppercase tracking-widest text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-full px-3 py-1 mb-5 md:mb-6">
             {p.tag}
           </span>
-          <h2 className="font-black text-gray-900 uppercase text-4xl md:text-5xl leading-tight mb-3">
+          <h2 className="font-black text-gray-900 dark:text-white uppercase text-3xl sm:text-4xl md:text-5xl leading-tight mb-3">
             {p.title}<br />{p.titleLine2}
           </h2>
-          <p className="font-mono text-sm text-gray-500 max-w-md mb-8">{p.body}</p>
+          <p className="font-mono text-xs sm:text-sm text-gray-500 dark:text-gray-400 max-w-md mb-6 md:mb-8">{p.body}</p>
 
           {/* Billing toggle */}
-          <div className="inline-flex bg-gray-100 rounded-xl p-1 border border-gray-200">
+          <div className="inline-flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1 border border-gray-200 dark:border-gray-700">
             <button
               onClick={() => setAnnual(false)}
               className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-lg transition-all duration-150 ${
-                !annual ? 'bg-white text-gray-900 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-700'
+                !annual
+                  ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-gray-700'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
               }`}
             >
               {p.monthly}
@@ -56,7 +58,9 @@ export default function Pricing() {
             <button
               onClick={() => setAnnual(true)}
               className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-150 ${
-                annual ? 'bg-white text-gray-900 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-700'
+                annual
+                  ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-gray-700'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
               }`}
             >
               {p.annual}
@@ -69,7 +73,7 @@ export default function Pricing() {
       </div>
 
       {/* Cards */}
-      <div className="p-6 lg:p-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="p-4 sm:p-6 lg:p-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 bg-gray-50 dark:bg-gray-900">
         {PLAN_IDS.map((id, i) => {
           const plan = p.plans[id];
           const price = annual ? PRICES[id].annual : PRICES[id].monthly;
@@ -83,52 +87,55 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
-              className={`flex flex-col bg-white rounded-2xl border shadow-sm overflow-hidden transition-shadow hover:shadow-md ${
+              className={`flex flex-col bg-white dark:bg-gray-900 rounded-2xl border shadow-sm overflow-hidden transition-shadow hover:shadow-md ${
                 isPopular
-                  ? 'border-blue-500 ring-2 ring-blue-500 ring-offset-2'
-                  : 'border-gray-200'
+                  ? 'border-blue-500 ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900'
+                  : 'border-gray-200 dark:border-gray-700'
               }`}
             >
-              {/* Popular ribbon */}
               {isPopular && (
                 <div className="bg-blue-600 text-white text-center font-black text-[10px] uppercase tracking-widest py-2">
                   ★ {p.popular}
                 </div>
               )}
 
-              {/* Plan header */}
-              <div className="px-5 pt-6 pb-5 border-b border-gray-100">
-                <div className="font-black uppercase text-sm tracking-wide text-gray-900 mb-1">
+              <div className="px-5 pt-6 pb-5 border-b border-gray-100 dark:border-gray-800 flex flex-col">
+                {/* Name */}
+                <div className="font-black uppercase text-sm tracking-wide text-gray-900 dark:text-white mb-1">
                   {plan.name}
                 </div>
-                <p className="font-mono text-xs text-gray-500 mb-5 leading-relaxed">
+                {/* Description — min-height so all prices start at the same baseline */}
+                <p className="font-mono text-xs text-gray-500 dark:text-gray-400 leading-relaxed min-h-[2.5rem] mb-5">
                   {plan.description}
                 </p>
 
-                {/* Price */}
-                {price === 0 ? (
-                  <div className="font-black text-4xl text-gray-900 leading-none mb-1">Free</div>
-                ) : (
-                  <div className="mb-1">
+                {/* Price — fixed-height block so queries line up */}
+                <div className="h-12 flex items-end mb-1">
+                  {price === 0 ? (
+                    <div className="font-black text-4xl text-gray-900 dark:text-white leading-none">Free</div>
+                  ) : (
                     <div className="flex items-end gap-1">
                       <span className="font-mono text-xs text-gray-400 self-start mt-1.5">LKR</span>
-                      <span className="font-black text-4xl text-gray-900 leading-none">{price.toLocaleString()}</span>
+                      <span className="font-black text-4xl text-gray-900 dark:text-white leading-none">{price.toLocaleString()}</span>
                       <span className="font-mono text-xs text-gray-400 mb-0.5">/mo</span>
                     </div>
-                    {annual && annualTotal > 0 && (
-                      <div className="font-mono text-[10px] text-gray-400 mt-1">
-                        LKR {annualTotal.toLocaleString()} billed annually
-                      </div>
-                    )}
-                  </div>
-                )}
+                  )}
+                </div>
 
-                <div className="font-mono text-xs text-blue-600 mt-2">
+                {/* Annual note — fixed height so queries always align */}
+                <div className="h-4 mb-2">
+                  {annual && annualTotal > 0 && (
+                    <span className="font-mono text-[10px] text-gray-400 dark:text-gray-500">
+                      LKR {annualTotal.toLocaleString()} billed annually
+                    </span>
+                  )}
+                </div>
+
+                <div className="font-mono text-xs text-blue-600 dark:text-blue-400">
                   {plan.queries}
                 </div>
               </div>
 
-              {/* Features + CTA */}
               <div className="flex-1 px-5 py-5 flex flex-col">
                 <ul className="flex flex-col gap-2.5 flex-1 mb-6">
                   {plan.features.map((f) => (
@@ -136,7 +143,7 @@ export default function Pricing() {
                       <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="font-mono text-xs text-gray-600 leading-snug">{f}</span>
+                      <span className="font-mono text-xs text-gray-600 dark:text-gray-400 leading-snug">{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -148,14 +155,14 @@ export default function Pricing() {
                   className={`block w-full text-center font-black uppercase text-xs tracking-widest py-3.5 rounded-lg transition-all duration-150 ${
                     isPopular
                       ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'
-                      : 'bg-gray-900 text-white hover:bg-gray-700'
+                      : 'bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-700 dark:hover:bg-gray-600'
                   }`}
                 >
                   {plan.cta}
                 </a>
 
                 {id === 'free' && (
-                  <p className="font-mono text-[10px] text-center mt-3 uppercase tracking-wider text-gray-400">
+                  <p className="font-mono text-[10px] text-center mt-3 uppercase tracking-wider text-gray-400 dark:text-gray-500">
                     {p.noCard}
                   </p>
                 )}
@@ -166,8 +173,8 @@ export default function Pricing() {
       </div>
 
       {/* Footer note */}
-      <div className="px-8 pb-8">
-        <p className="font-mono text-xs text-gray-400">{p.footerNote}</p>
+      <div className="px-6 sm:px-8 pb-8 bg-gray-50 dark:bg-gray-900">
+        <p className="font-mono text-xs text-gray-400 dark:text-gray-500">{p.footerNote}</p>
       </div>
     </section>
   );
