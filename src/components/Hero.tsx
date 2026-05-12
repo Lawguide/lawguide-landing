@@ -1,118 +1,197 @@
-import React from 'react';
-import { MapPin, Sparkles, ArrowRight, Play, Shield, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0 },
+};
+
+function SpeedLines() {
+  return (
+    <svg
+      className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.04]"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      {Array.from({ length: 18 }).map((_, i) => (
+        <line
+          key={i}
+          x1={`${(i / 18) * 100}%`}
+          y1="0"
+          x2={`${(i / 18) * 100 + 8}%`}
+          y2="100%"
+          stroke="#000"
+          strokeWidth="1"
+        />
+      ))}
+    </svg>
+  );
+}
+
+function ChatMockup() {
+  const messages = [
+    { role: 'user', text: 'What are my rights as a tenant in Sri Lanka?' },
+    {
+      role: 'ai',
+      text: 'Under the Rent Act No. 7 of 1972, tenants are protected from arbitrary eviction. Your landlord must...',
+      citation: 'Rent Act No. 7 of 1972 — §14(2)',
+    },
+  ];
+
+  return (
+    <div
+      className="bg-white border-2 border-black w-full max-w-md"
+      style={{ boxShadow: '8px 8px 0 0 #000' }}
+    >
+      {/* Terminal bar */}
+      <div className="bg-black px-4 py-2 flex items-center gap-2">
+        <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
+        <span className="text-white font-mono text-xs uppercase tracking-widest">
+          lawguide — legal assistant
+        </span>
+      </div>
+      <div className="p-4 flex flex-col gap-3">
+        {messages.map((m, i) => (
+          <div key={i} className={`flex flex-col gap-1 ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-black/40">
+              {m.role === 'user' ? 'You' : 'Lawguide AI'}
+            </span>
+            <div
+              className={`font-mono text-xs leading-relaxed px-3 py-2 border-2 border-black max-w-[85%] ${
+                m.role === 'user' ? 'bg-black text-white' : 'bg-white text-black'
+              }`}
+            >
+              {m.text}
+            </div>
+            {m.citation && (
+              <div className="font-mono text-[10px] text-[#22c55e] border border-[#22c55e] px-2 py-1 uppercase tracking-wider">
+                {m.citation}
+              </div>
+            )}
+          </div>
+        ))}
+        <div className="flex items-center gap-2 border-2 border-black px-3 py-2 mt-1">
+          <span className="font-mono text-xs text-black/30 flex-1">Ask a legal question...</span>
+          <div className="w-2 h-4 bg-[#22c55e] animate-pulse" />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Hero() {
   const { t } = useLanguage();
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleTryNow = () => {
-    // This will eventually link to app.lawguide.lk
-    window.open('https://app.lawguide.lk', '_blank');
-  };
-
-  const handleWatchDemo = () => {
-    // Placeholder for demo video
-    window.open('#', '_blank');
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) setSubmitted(true);
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50/30 py-20 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-purple-400/10 to-pink-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
-      </div>
+    <section className="relative min-h-screen border-b-2 border-black overflow-hidden pt-14 md:pt-0">
+      <SpeedLines />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          
-          {/* Location Badge */}
-          <div className="flex items-center justify-center space-x-2 mb-8 animate-fade-in">
-            <div className="flex items-center space-x-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium border border-blue-200/50 backdrop-blur-sm">
-              <MapPin className="h-4 w-4" />
-              <span>{t.hero.location}</span>
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            </div>
-          </div>
-          
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <span className="block">{t.hero.title}</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-gradient">
-              {t.hero.titleHighlight}
-            </span>
-          </h1>
-          
-          {/* AI Badge */}
-          <div className="flex items-center justify-center space-x-2 mb-6 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-            <div className="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-              <Sparkles className="h-4 w-4" />
-              <span>Powered by Advanced AI</span>
-            </div>
-          </div>
-          
-          {/* Description */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '600ms' }}>
-            {t.hero.description}
+      <div className="relative z-10 grid md:grid-cols-2 gap-0 min-h-screen">
+        {/* Left — copy */}
+        <div className="flex flex-col justify-center px-8 py-16 md:py-24 border-b-2 md:border-b-0 md:border-r-2 border-black">
+          {/* Badge */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-2 border-2 border-black px-3 py-1 mb-8 w-fit"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#22c55e]" />
+            <span className="font-mono text-xs uppercase tracking-widest">Sri Lanka&apos;s Legal AI</span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-black text-black uppercase leading-none text-5xl md:text-6xl lg:text-7xl mb-6"
+          >
+            AI Legal
             <br />
-            <span className="text-blue-600 font-semibold">Experience the future of legal assistance in Sri Lanka.</span>
-          </p>
+            Research
+            <br />
+            <span className="text-[#22c55e]">For Sri Lanka.</span>
+          </motion.h1>
 
-          {/* Trust Indicators */}
-          <div className="flex items-center justify-center space-x-8 mb-12 animate-fade-in-up" style={{ animationDelay: '800ms' }}>
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Shield className="h-5 w-5 text-green-600" />
-              <span className="text-sm font-medium">Secure & Confidential</span>
-            </div>
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Zap className="h-5 w-5 text-yellow-600" />
-              <span className="text-sm font-medium">Instant Responses</span>
-            </div>
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Sparkles className="h-5 w-5 text-purple-600" />
-              <span className="text-sm font-medium">AI-Powered</span>
-            </div>
-          </div>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 animate-fade-in-up" style={{ animationDelay: '1000ms' }}>
-            <button
-              onClick={handleTryNow}
-              className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 flex items-center space-x-2"
+          {/* Body */}
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="font-mono text-sm leading-relaxed text-black/70 max-w-sm mb-10"
+          >
+            RAG-powered answers over 1700+ Acts, 26,000+ case law documents, and Supreme Court judgments.
+            In English, Sinhala, and Tamil. Instant. Cited. Accurate.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <a
+              href="https://app.lawguide.lk/en/register"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-black uppercase text-sm tracking-widest bg-black text-white px-6 py-4 border-2 border-black hover:bg-[#22c55e] hover:text-black hover:border-[#22c55e] transition-colors duration-150"
+              style={{ boxShadow: '4px 4px 0 0 #22c55e' }}
             >
-              <span>Try LawGuide Now</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            
+              Start Free — 5 Queries/Day
+            </a>
             <button
-              onClick={handleWatchDemo}
-              className="group bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-blue-300 flex items-center space-x-2"
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+              className="font-black uppercase text-sm tracking-widest bg-white text-black px-6 py-4 border-2 border-black hover:bg-black hover:text-white transition-colors duration-150"
+              style={{ boxShadow: '4px 4px 0 0 #000' }}
             >
-              <Play className="h-5 w-5 text-blue-600" />
-              <span>Watch Demo</span>
+              View Plans
             </button>
-          </div>
-          
-          {/* Launch Status */}
-          <div className="animate-fade-in-up" style={{ animationDelay: '1200ms' }}>
-            <p className="text-gray-500 mb-4">🚀 Now Live & Ready to Use</p>
-            <div className="flex items-center justify-center space-x-4 text-sm text-gray-400">
-              <span>✨ Free trial available</span>
-              <span>•</span>
-              <span>🔒 No credit card required</span>
-              <span>•</span>
-              <span>🇱🇰 Made for Sri Lanka</span>
-            </div>
-          </div>
+          </motion.div>
+
+          {/* Trust line */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.5, delay: 0.65 }}
+            className="mt-8 flex flex-wrap gap-4"
+          >
+            {['No card required', '1704 Acts indexed', '26K+ case law docs'].map((item) => (
+              <div key={item} className="flex items-center gap-2">
+                <span className="text-[#22c55e] font-black">—</span>
+                <span className="font-mono text-xs text-black/50 uppercase tracking-wider">{item}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
-      </div>
 
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-4 h-4 bg-blue-500 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '0s' }} />
-      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '1s' }} />
-      <div className="absolute bottom-40 left-20 w-2 h-2 bg-pink-500 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '2s' }} />
-      <div className="absolute bottom-20 right-10 w-5 h-5 bg-cyan-500 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '3s' }} />
+        {/* Right — mockup */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex items-center justify-center px-8 py-16 bg-[#f5f5f5] relative"
+        >
+          <SpeedLines />
+          <div className="relative z-10">
+            <ChatMockup />
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

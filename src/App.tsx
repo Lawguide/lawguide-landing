@@ -1,26 +1,26 @@
 import React from 'react';
 import { LanguageProvider } from './contexts/LanguageContext';
-import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import Audience from './components/Audience';
+import FeatureRow from './components/FeatureRow';
+import SecondaryStrip from './components/SecondaryStrip';
 import Pricing from './components/Pricing';
-import Status from './components/Status';
-import Newsletter from './components/Newsletter';
-import Footer from './components/Footer';
+import SiteFooter from './components/SiteFooter';
 
 function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-white">
-        <Header />
-        <Hero />
-        <Features />
-        <Audience />
-        <Pricing />
-        <Status />
-        <Newsletter />
-        <Footer />
+      <div className="flex min-h-screen bg-white font-mono">
+        {/* Fixed sidebar desktop */}
+        <Sidebar />
+        {/* Main content — offset by sidebar width on desktop */}
+        <main className="flex-1 md:ml-60 w-full">
+          <Hero />
+          <FeatureRow />
+          <SecondaryStrip />
+          <Pricing />
+          <SiteFooter />
+        </main>
       </div>
     </LanguageProvider>
   );

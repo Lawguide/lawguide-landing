@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Zap, Users, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const APP_URL = 'https://app.lawguide.lk';
 
@@ -7,67 +7,52 @@ const plans = [
   {
     id: 'free',
     name: 'Free',
-    description: 'For curious individuals exploring Sri Lankan law',
     price_monthly_lkr: 0,
     price_annual_lkr: 0,
-    price_monthly_usd: 0,
-    daily_chat_limit: 5,
-    seat_count: 1,
-    is_popular: false,
+    description: 'Try Lawguide. No card needed.',
+    queries: '5 queries / day',
     languages: ['English'],
     features: [
-      '5 AI legal queries per day',
-      'English only',
-      'Basic legal library access',
+      'AI legal Q&A (English)',
+      'Basic library access',
+      'Cited answers',
       'Email support',
     ],
-    cta: 'Get Started Free',
+    cta: 'Start Free',
     href: `${APP_URL}/en/register`,
-    gradient: 'from-gray-100 to-gray-50',
-    border: 'border-gray-200',
-    ctaClass: 'bg-gray-900 hover:bg-gray-800 text-white',
-    badgeClass: '',
+    accent: false,
   },
   {
     id: 'student',
     name: 'Student',
-    description: 'For law students who need full multilingual access',
     price_monthly_lkr: 1500,
     price_annual_lkr: 15000,
-    price_monthly_usd: 5,
-    daily_chat_limit: 15,
-    seat_count: 1,
-    is_popular: true,
+    description: 'For law students who need full access.',
+    queries: '15 queries / day',
     languages: ['English', 'Sinhala', 'Tamil'],
     features: [
-      '15 AI legal queries per day',
-      'English, Sinhala & Tamil',
-      'Full legal library access',
-      'Chat history saved',
+      'All Free features',
+      'Sinhala & Tamil support',
+      'Chat history',
+      'Full library access',
       'Priority email support',
     ],
-    cta: 'Start Student Plan',
+    cta: 'Start Student',
     href: `${APP_URL}/en/register?plan=student`,
-    gradient: 'from-blue-600 to-purple-600',
-    border: 'border-blue-500',
-    ctaClass: 'bg-white hover:bg-blue-50 text-blue-700 font-bold',
-    badgeClass: 'bg-white text-blue-700',
+    accent: false,
+    popular: true,
   },
   {
     id: 'professional',
     name: 'Professional',
-    description: 'For individual lawyers and legal professionals',
     price_monthly_lkr: 4500,
     price_annual_lkr: 45000,
-    price_monthly_usd: 15,
-    daily_chat_limit: 60,
-    seat_count: 1,
-    is_popular: false,
+    description: 'For individual legal professionals.',
+    queries: '60 queries / day',
     languages: ['English', 'Sinhala', 'Tamil'],
     features: [
-      '60 AI legal queries per day',
-      'English, Sinhala & Tamil',
-      'Claude AI for English queries',
+      'All Student features',
+      'Claude AI (English queries)',
       'Document upload & analysis',
       'Legal templates',
       'Analytics dashboard',
@@ -75,40 +60,26 @@ const plans = [
     ],
     cta: 'Start Professional',
     href: `${APP_URL}/en/register?plan=professional`,
-    gradient: 'from-gray-100 to-gray-50',
-    border: 'border-gray-200',
-    ctaClass: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white',
-    badgeClass: '',
+    accent: true,
   },
   {
     id: 'firm',
     name: 'Firm',
-    description: 'For law firms needing team access and API',
     price_monthly_lkr: 9000,
     price_annual_lkr: 90000,
-    price_monthly_usd: 30,
-    daily_chat_limit: 200,
-    seat_count: 3,
-    is_popular: false,
+    description: 'For law firms needing team access.',
+    queries: '200 shared queries / day',
     languages: ['English', 'Sinhala', 'Tamil'],
     features: [
-      '200 shared queries per day',
-      '3 team seats included',
-      'English, Sinhala & Tamil',
-      'Claude AI for English queries',
+      'All Professional features',
+      '3 team seats',
       'API access',
-      'Document upload & analysis',
-      'Legal templates',
-      'Analytics dashboard',
       'Priority processing',
-      'Dedicated support',
+      'Dedicated account support',
     ],
-    cta: 'Start Firm Plan',
+    cta: 'Start Firm',
     href: `${APP_URL}/en/register?plan=firm`,
-    gradient: 'from-gray-100 to-gray-50',
-    border: 'border-gray-200',
-    ctaClass: 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white',
-    badgeClass: '',
+    accent: false,
   },
 ];
 
@@ -116,164 +87,152 @@ export default function Pricing() {
   const [annual, setAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Zap className="h-4 w-4" />
-            <span>Simple, transparent pricing</span>
+    <section id="pricing" className="border-b-2 border-black">
+      {/* Header */}
+      <div className="px-8 py-16 border-b-2 border-black">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <span className="font-mono text-xs uppercase tracking-widest border border-black px-2 py-1">Pricing</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Plans for every legal need
+          <h2 className="font-black text-black uppercase text-4xl md:text-5xl leading-tight mb-4">
+            Plans for Every<br />Legal Need.
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-            From students to law firms — pay in LKR, cancel anytime.
+          <p className="font-mono text-sm text-black/60 max-w-md mb-8">
+            Pay in LKR. Cancel anytime. All paid plans include a 7-day free trial. Payments via PayHere.lk.
           </p>
 
-          {/* Billing toggle */}
-          <div className="inline-flex items-center gap-4 bg-white border border-gray-200 rounded-full px-2 py-2 shadow-sm">
+          {/* Toggle */}
+          <div className="inline-flex border-2 border-black">
             <button
               onClick={() => setAnnual(false)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                !annual ? 'bg-gray-900 text-white shadow' : 'text-gray-600 hover:text-gray-900'
+              className={`font-mono text-xs uppercase tracking-widest px-5 py-2.5 transition-colors ${
+                !annual ? 'bg-black text-white' : 'bg-white text-black hover:bg-black/5'
               }`}
             >
               Monthly
             </button>
             <button
               onClick={() => setAnnual(true)}
-              className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                annual ? 'bg-gray-900 text-white shadow' : 'text-gray-600 hover:text-gray-900'
+              className={`font-mono text-xs uppercase tracking-widest px-5 py-2.5 flex items-center gap-2 transition-colors ${
+                annual ? 'bg-black text-white' : 'bg-white text-black hover:bg-black/5'
               }`}
             >
               Annual
-              <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
-                Save 2 months
+              <span className="bg-[#22c55e] text-black text-[10px] font-black px-1.5 py-0.5 tracking-wide">
+                2 months free
               </span>
             </button>
           </div>
-        </div>
+        </motion.div>
+      </div>
 
-        {/* Plan cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
-          {plans.map((plan) => {
-            const priceMonthly = annual && plan.price_annual_lkr > 0
-              ? Math.round(plan.price_annual_lkr / 12)
-              : plan.price_monthly_lkr;
-            const isPopular = plan.is_popular;
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+        {plans.map((plan, i) => {
+          const price = annual && plan.price_annual_lkr > 0
+            ? Math.round(plan.price_annual_lkr / 12)
+            : plan.price_monthly_lkr;
 
-            return (
-              <div
-                key={plan.id}
-                className={`relative rounded-2xl border-2 overflow-hidden flex flex-col ${
-                  isPopular
-                    ? 'border-blue-500 shadow-2xl shadow-blue-500/20 scale-[1.02]'
-                    : `${plan.border} shadow-lg`
-                }`}
-              >
-                {/* Popular badge */}
-                {isPopular && (
-                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center text-xs font-bold py-2 tracking-wider uppercase">
-                    <Star className="inline h-3 w-3 mr-1 mb-0.5" />
-                    Most Popular
-                  </div>
-                )}
-
-                {/* Card header */}
-                <div
-                  className={`p-6 ${
-                    isPopular
-                      ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white'
-                      : 'bg-white'
-                  }`}
-                >
-                  <h3
-                    className={`text-xl font-bold mb-1 ${isPopular ? 'text-white' : 'text-gray-900'}`}
-                  >
-                    {plan.name}
-                  </h3>
-                  <p
-                    className={`text-sm mb-6 ${isPopular ? 'text-blue-100' : 'text-gray-500'}`}
-                  >
-                    {plan.description}
-                  </p>
-
-                  {/* Price */}
-                  <div className="mb-2">
-                    {priceMonthly === 0 ? (
-                      <div className={`text-4xl font-bold ${isPopular ? 'text-white' : 'text-gray-900'}`}>
-                        Free
-                      </div>
-                    ) : (
-                      <>
-                        <div className={`flex items-end gap-1 ${isPopular ? 'text-white' : 'text-gray-900'}`}>
-                          <span className="text-sm font-medium self-start mt-2">LKR</span>
-                          <span className="text-4xl font-bold">{priceMonthly.toLocaleString()}</span>
-                          <span className={`text-sm mb-1 ${isPopular ? 'text-blue-100' : 'text-gray-500'}`}>/mo</span>
-                        </div>
-                        <div className={`text-xs mt-1 ${isPopular ? 'text-blue-200' : 'text-gray-400'}`}>
-                          ≈ USD {plan.price_monthly_usd}/mo
-                          {annual && (
-                            <span className="ml-2 font-medium text-green-400">
-                              · billed LKR {plan.price_annual_lkr.toLocaleString()}/yr
-                            </span>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Limits */}
-                  <div className={`flex flex-wrap gap-2 mt-4 text-xs font-medium ${isPopular ? 'text-blue-100' : 'text-gray-500'}`}>
-                    <span>{plan.daily_chat_limit} queries/day</span>
-                    {plan.seat_count > 1 && (
-                      <>
-                        <span>·</span>
-                        <span className="flex items-center gap-1">
-                          <Users className="h-3 w-3" />
-                          {plan.seat_count} seats
-                        </span>
-                      </>
+          return (
+            <motion.div
+              key={plan.id}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className={`flex flex-col border-black ${
+                i < plans.length - 1 ? 'border-r-2' : ''
+              } ${plan.accent ? 'bg-black text-white' : 'bg-white text-black'}`}
+            >
+              {/* Plan header */}
+              <div className={`px-6 pt-8 pb-6 border-b-2 ${plan.accent ? 'border-white/20' : 'border-black'}`}>
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <div className={`font-black text-xs uppercase tracking-widest mb-1 ${plan.accent ? 'text-[#22c55e]' : 'text-black'}`}>
+                      {plan.popular ? '★ Most Popular' : plan.name}
+                    </div>
+                    {plan.popular && (
+                      <div className="font-black uppercase text-sm">{plan.name}</div>
                     )}
                   </div>
                 </div>
 
-                {/* Features */}
-                <div className="p-6 bg-white flex-1 flex flex-col">
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <p className={`font-mono text-xs mb-6 ${plan.accent ? 'text-white/60' : 'text-black/50'}`}>
+                  {plan.description}
+                </p>
 
-                  <a
-                    href={plan.href}
-                    className={`block w-full text-center py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow-md ${plan.ctaClass}`}
-                  >
-                    {plan.cta}
-                  </a>
-
-                  {plan.id === 'free' && (
-                    <p className="text-center text-xs text-gray-400 mt-3">No credit card required</p>
+                {/* Price */}
+                <div className="mb-2">
+                  {price === 0 ? (
+                    <div className="font-black text-4xl leading-none">Free</div>
+                  ) : (
+                    <div className="flex items-end gap-1">
+                      <span className={`font-mono text-xs self-start mt-2 ${plan.accent ? 'text-white/60' : 'text-black/50'}`}>
+                        LKR
+                      </span>
+                      <span className="font-black text-4xl leading-none">{price.toLocaleString()}</span>
+                      <span className={`font-mono text-xs mb-1 ${plan.accent ? 'text-white/60' : 'text-black/50'}`}>
+                        /mo
+                      </span>
+                    </div>
                   )}
                 </div>
-              </div>
-            );
-          })}
-        </div>
 
-        {/* Footer note */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500">
-            All paid plans include a <strong>7-day free trial</strong>. Upgrade or downgrade anytime.
-            Payments processed securely via PayHere.lk in LKR.
-          </p>
-        </div>
+                <div className={`font-mono text-xs ${plan.accent ? 'text-[#22c55e]' : 'text-black/50'}`}>
+                  {plan.queries}
+                </div>
+              </div>
+
+              {/* Features */}
+              <div className="flex-1 px-6 py-6 flex flex-col">
+                <ul className="flex flex-col gap-2.5 flex-1 mb-8">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2">
+                      <span className={`font-black text-xs mt-0.5 ${plan.accent ? 'text-[#22c55e]' : 'text-[#22c55e]'}`}>
+                        +
+                      </span>
+                      <span className={`font-mono text-xs leading-snug ${plan.accent ? 'text-white/80' : 'text-black/70'}`}>
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={plan.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block w-full text-center font-black uppercase text-xs tracking-widest py-3.5 border-2 transition-colors duration-150 ${
+                    plan.accent
+                      ? 'border-[#22c55e] text-[#22c55e] hover:bg-[#22c55e] hover:text-black'
+                      : 'border-black text-black hover:bg-black hover:text-white'
+                  }`}
+                  style={{ boxShadow: plan.accent ? '4px 4px 0 0 #22c55e' : '4px 4px 0 0 #000' }}
+                >
+                  {plan.cta}
+                </a>
+
+                {plan.id === 'free' && (
+                  <p className="font-mono text-[10px] text-black/40 text-center mt-3 uppercase tracking-wider">
+                    No credit card required
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Footer note */}
+      <div className="px-8 py-6 border-t-2 border-black">
+        <p className="font-mono text-xs text-black/50">
+          All plans billed in LKR via PayHere.lk — Sri Lanka&apos;s leading payment gateway. 7-day free trial on all paid plans.
+        </p>
       </div>
     </section>
   );
