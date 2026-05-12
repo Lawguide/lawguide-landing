@@ -123,13 +123,13 @@ export default function Hero() {
             <a
               href="https://app.lawguide.lk/en/register"
               target="_blank" rel="noopener noreferrer"
-              className="font-black uppercase text-xs tracking-widest bg-blue-600 text-white px-6 py-3.5 rounded-sm hover:bg-blue-700 transition-colors duration-150 shadow-sm text-center"
+              className="font-black uppercase text-xs tracking-widest bg-blue-600 text-white px-6 py-3.5 rounded-lg hover:bg-blue-700 transition-colors duration-150 shadow-sm text-center"
             >
               {t.hero.ctaPrimary}
             </a>
             <button
               onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-              className="font-black uppercase text-xs tracking-widest bg-white text-gray-700 px-6 py-3.5 rounded-sm border border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-colors duration-150 text-center"
+              className="font-black uppercase text-xs tracking-widest bg-white text-gray-700 px-6 py-3.5 rounded-lg border border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-colors duration-150 text-center"
             >
               {t.hero.ctaSecondary}
             </button>

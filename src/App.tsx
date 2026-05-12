@@ -4,8 +4,8 @@ import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import FeatureRow from './components/FeatureRow';
 import SecondaryStrip from './components/SecondaryStrip';
-import Waitlist from './components/Waitlist';
 import Pricing from './components/Pricing';
+import WaitlistCTA from './components/WaitlistCTA';
 import SiteFooter from './components/SiteFooter';
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
           <Hero />
           <FeatureRow />
           <SecondaryStrip />
-          <Waitlist />
           <Pricing />
+          <WaitlistCTA />
           <SiteFooter />
         </main>
       </div>

@@ -66,7 +66,7 @@ export default function Sidebar() {
             href="https://app.lawguide.lk"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 block bg-blue-600 text-white text-center font-black text-xs uppercase tracking-widest py-3 rounded-sm hover:bg-blue-700 transition-colors duration-150 shadow-sm"
+            className="mt-4 block bg-blue-600 text-white text-center font-black text-xs uppercase tracking-widest py-3 rounded-lg hover:bg-blue-700 transition-colors duration-150 shadow-sm"
           >
             {t.nav.tryFree}
           </a>
@@ -79,7 +79,7 @@ export default function Sidebar() {
               <button
                 key={l.code}
                 onClick={() => setLanguage(l.code)}
-                className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 rounded-sm border transition-colors duration-150 ${
+                className={`flex-1 font-mono text-xs uppercase tracking-widest py-1.5 rounded-lg border transition-colors duration-150 ${
                   language === l.code
                     ? 'bg-blue-600 text-white border-blue-600'
                     : 'text-gray-400 border-gray-200 hover:text-gray-700 hover:border-gray-300'
@@ -104,7 +104,7 @@ export default function Sidebar() {
         </a>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="font-mono text-xs uppercase tracking-widest border border-gray-300 px-3 py-1.5 rounded-sm hover:bg-gray-50 text-gray-600 transition-colors"
+          className="font-mono text-xs uppercase tracking-widest border border-gray-300 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600 transition-colors"
         >
           {mobileOpen ? t.nav.close : t.nav.menu}
         </button>
@@ -133,7 +133,7 @@ export default function Sidebar() {
               href="https://app.lawguide.lk"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 text-white text-center font-black uppercase text-xs py-3 rounded-sm tracking-widest hover:bg-blue-700"
+              className="bg-blue-600 text-white text-center font-black uppercase text-xs py-3 rounded-lg tracking-widest hover:bg-blue-700"
             >
               {t.nav.tryFree}
             </a>

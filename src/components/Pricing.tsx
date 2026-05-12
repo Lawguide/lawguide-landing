@@ -21,8 +21,6 @@ const HREFS: Record<PlanId, string> = {
   firm:         `${APP}/en/register?plan=firm`,
 };
 
-const POPULAR: PlanId = 'student';
-
 export default function Pricing() {
   const { t } = useLanguage();
   const [annual, setAnnual] = useState(false);
@@ -37,19 +35,19 @@ export default function Pricing() {
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.5 }}
         >
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 border border-gray-300 bg-gray-50 px-2.5 py-1 rounded-sm mb-6 inline-block">
+          <span className="inline-block font-mono text-xs uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 rounded-full px-3 py-1 mb-6">
             {p.tag}
           </span>
-          <h2 className="font-black text-gray-900 uppercase text-4xl md:text-5xl leading-tight mb-4">
+          <h2 className="font-black text-gray-900 uppercase text-4xl md:text-5xl leading-tight mb-3">
             {p.title}<br />{p.titleLine2}
           </h2>
           <p className="font-mono text-sm text-gray-500 max-w-md mb-8">{p.body}</p>
 
-          {/* Billing toggle — matches app button style */}
-          <div className="inline-flex bg-gray-100 rounded-lg p-1 border border-gray-200">
+          {/* Billing toggle */}
+          <div className="inline-flex bg-gray-100 rounded-xl p-1 border border-gray-200">
             <button
               onClick={() => setAnnual(false)}
-              className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-md transition-colors ${
+              className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-lg transition-all duration-150 ${
                 !annual ? 'bg-white text-gray-900 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -57,12 +55,12 @@ export default function Pricing() {
             </button>
             <button
               onClick={() => setAnnual(true)}
-              className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-md flex items-center gap-2 transition-colors ${
+              className={`font-mono text-xs uppercase tracking-widest px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-150 ${
                 annual ? 'bg-white text-gray-900 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               {p.annual}
-              <span className="bg-blue-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded tracking-wide">
+              <span className="bg-blue-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full tracking-wide">
                 {p.annualBadge}
               </span>
             </button>
@@ -70,14 +68,13 @@ export default function Pricing() {
         </motion.div>
       </div>
 
-      {/* Cards grid — matches app's card style */}
+      {/* Cards */}
       <div className="p-6 lg:p-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {PLAN_IDS.map((id, i) => {
           const plan = p.plans[id];
-          const prices = PRICES[id];
-          const price = annual ? prices.annual : prices.monthly;
-          const isPopular = id === POPULAR;
-          const isAccent = id === 'professional';
+          const price = annual ? PRICES[id].annual : PRICES[id].monthly;
+          const annualTotal = PRICES[id].annualTotal;
+          const isPopular = id === 'student';
 
           return (
             <motion.div
@@ -86,61 +83,60 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
-              className={`flex flex-col bg-white rounded-xl border shadow-sm overflow-hidden ${
+              className={`flex flex-col bg-white rounded-2xl border shadow-sm overflow-hidden transition-shadow hover:shadow-md ${
                 isPopular
-                  ? 'border-blue-500 ring-2 ring-blue-500 ring-offset-1'
-                  : isAccent
-                  ? 'border-gray-800 bg-gray-900'
+                  ? 'border-blue-500 ring-2 ring-blue-500 ring-offset-2'
                   : 'border-gray-200'
               }`}
             >
               {/* Popular ribbon */}
               {isPopular && (
-                <div className="bg-blue-600 text-white text-center font-black text-[10px] uppercase tracking-widest py-1.5">
+                <div className="bg-blue-600 text-white text-center font-black text-[10px] uppercase tracking-widest py-2">
                   ★ {p.popular}
                 </div>
               )}
 
-              {/* Header */}
-              <div className={`px-5 pt-6 pb-5 border-b ${isAccent ? 'border-gray-700' : 'border-gray-100'}`}>
-                <div className={`font-black uppercase text-sm tracking-wide mb-1 ${isAccent ? 'text-white' : 'text-gray-900'}`}>
+              {/* Plan header */}
+              <div className="px-5 pt-6 pb-5 border-b border-gray-100">
+                <div className="font-black uppercase text-sm tracking-wide text-gray-900 mb-1">
                   {plan.name}
                 </div>
-                <p className={`font-mono text-xs mb-4 ${isAccent ? 'text-gray-400' : 'text-gray-500'}`}>
+                <p className="font-mono text-xs text-gray-500 mb-5 leading-relaxed">
                   {plan.description}
                 </p>
 
+                {/* Price */}
                 {price === 0 ? (
-                  <div className={`font-black text-3xl leading-none mb-1 ${isAccent ? 'text-white' : 'text-gray-900'}`}>Free</div>
+                  <div className="font-black text-4xl text-gray-900 leading-none mb-1">Free</div>
                 ) : (
                   <div className="mb-1">
                     <div className="flex items-end gap-1">
-                      <span className={`font-mono text-xs self-start mt-1 ${isAccent ? 'text-gray-400' : 'text-gray-400'}`}>LKR</span>
-                      <span className={`font-black text-3xl leading-none ${isAccent ? 'text-white' : 'text-gray-900'}`}>{price.toLocaleString()}</span>
-                      <span className={`font-mono text-xs mb-0.5 ${isAccent ? 'text-gray-400' : 'text-gray-400'}`}>/mo</span>
+                      <span className="font-mono text-xs text-gray-400 self-start mt-1.5">LKR</span>
+                      <span className="font-black text-4xl text-gray-900 leading-none">{price.toLocaleString()}</span>
+                      <span className="font-mono text-xs text-gray-400 mb-0.5">/mo</span>
                     </div>
-                    {annual && prices.annualTotal > 0 && (
-                      <div className={`font-mono text-[10px] mt-1 ${isAccent ? 'text-gray-500' : 'text-gray-400'}`}>
-                        LKR {prices.annualTotal.toLocaleString()} / year
+                    {annual && annualTotal > 0 && (
+                      <div className="font-mono text-[10px] text-gray-400 mt-1">
+                        LKR {annualTotal.toLocaleString()} billed annually
                       </div>
                     )}
                   </div>
                 )}
 
-                <div className={`font-mono text-[11px] mt-2 ${isAccent ? 'text-blue-400' : 'text-blue-600'}`}>
+                <div className="font-mono text-xs text-blue-600 mt-2">
                   {plan.queries}
                 </div>
               </div>
 
               {/* Features + CTA */}
               <div className="flex-1 px-5 py-5 flex flex-col">
-                <ul className="flex flex-col gap-2 flex-1 mb-6">
+                <ul className="flex flex-col gap-2.5 flex-1 mb-6">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <svg className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${isAccent ? 'text-blue-400' : 'text-blue-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <li key={f} className="flex items-start gap-2.5">
+                      <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className={`font-mono text-xs leading-snug ${isAccent ? 'text-gray-300' : 'text-gray-600'}`}>{f}</span>
+                      <span className="font-mono text-xs text-gray-600 leading-snug">{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -149,10 +145,8 @@ export default function Pricing() {
                   href={HREFS[id]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block w-full text-center font-black uppercase text-xs tracking-widest py-3 rounded-sm transition-colors duration-150 ${
-                    isAccent
-                      ? 'bg-blue-600 text-white hover:bg-blue-500'
-                      : isPopular
+                  className={`block w-full text-center font-black uppercase text-xs tracking-widest py-3.5 rounded-lg transition-all duration-150 ${
+                    isPopular
                       ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'
                       : 'bg-gray-900 text-white hover:bg-gray-700'
                   }`}
